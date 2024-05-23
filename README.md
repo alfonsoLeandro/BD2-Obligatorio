@@ -13,8 +13,10 @@ Este proyecto es un trabajo obligatorio para el primer semestre de 2024,
 desarrollado como proyecto final para la materia Bases de Datos II.
 
 [//]: # ( - TODO descripcion general)
-[Diagramas (MER, tablas, diagrama de deploy)](https://drive.google.com/file/d/1WjgIBcqFxLbPESPz67LNtpOGHJfB475C/view?usp=sharing)
-Ver también: [Bitácora de asunciones](bitacora%20de%20asunciones.md)
+Ver también:
+ - [Diagramas (MER, tablas, diagrama de deploy)](https://drive.google.com/file/d/1WjgIBcqFxLbPESPz67LNtpOGHJfB475C/view?usp=sharing)
+ - [Bitácora de asunciones](bitacora%20de%20asunciones.md)
+ - [Prototipo en Figma](https://www.figma.com/design/p7qNy1jVJzBysPr0lnGMmA)
 
 ## Tecnologías
 
