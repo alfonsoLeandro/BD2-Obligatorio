@@ -59,9 +59,9 @@ CREATE TABLE IF NOT EXIST elige(
 CREATE TABLE IF NOT EXIST predice(
     id INT PRIMARY KEY,
     goles INT NOT NULL,
-    idPartido INT NOT NULL,
-    idEquipo INT NOT NULL,
-    idAlumno INT NOT NULL
+    id_partido INT NOT NULL,
+    id_equipo INT NOT NULL,
+    id_alumno INT NOT NULL
 );
 
 ALTER TABLE alumno ADD FOREIGN KEY id_carrera REFERENCES carrera(id);
@@ -75,6 +75,6 @@ ALTER TABLE elige ADD FOREIGN KEY id_alumno REFERENCES alumno(id);
 ALTER TABLE elige ADD FOREIGN KEY campeon REFERENCES equipo(id);
 ALTER TABLE elige ADD FOREIGN KEY subcampeon REFERENCES equipo(id);
 
-ALTER TABLE predice ADD FOREIGN KEY idPartido REFERENCES patido(id);
-ALTER TABLE predice ADD FOREIGN KEY idEquipo REFERENCES equipo(id);
-ALTER TABLE predice ADD FOREIGN KEY idAlumno REFERENCES alumno(id);
+ALTER TABLE predice ADD FOREIGN KEY id_partido REFERENCES patido(id);
+ALTER TABLE predice ADD FOREIGN KEY id_equipo REFERENCES equipo(id);
+ALTER TABLE predice ADD FOREIGN KEY id_alumno REFERENCES alumno(id);
