@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXIST admin(
     nombre VARCHAR(20) NOT NULL,
     apellido VARCHAR(20) NOT NULL,
     email VARCHAR(30) NOT NULL,
-    contraseña VARCHAR() NOT NULL,
+    contrasena VARCHAR() NOT NULL,
     telefono VARCHAR(11) NOT NULL
 );
 
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXIST alumno(
     nombre VARCHAR(20) NOT NULL,
     apellido VARCHAR(20) NOT NULL,
     email VARCHAR(30) NOT NULL,
-    contraseña VARCHAR() NOT NULL,
+    contrasena VARCHAR() NOT NULL,
     telefono VARCHAR(11) NOT NULL,
     puntaje INT NOT NULL DEFAULT 0
 );
