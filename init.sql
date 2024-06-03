@@ -5,8 +5,7 @@ CREATE TABLE IF NOT EXIST admin(
     apellido VARCHAR(20) NOT NULL,
     email VARCHAR(30) NOT NULL,
     contrasena VARCHAR() NOT NULL,
-    telefono VARCHAR(11) NOT NULL,
-    id_carrera INT
+    telefono VARCHAR(11) NOT NULL
 );
 
 CREATE TABLE IF NOT EXIST alumno(
@@ -17,7 +16,8 @@ CREATE TABLE IF NOT EXIST alumno(
     email VARCHAR(30) NOT NULL,
     contrasena VARCHAR() NOT NULL,
     telefono VARCHAR(11) NOT NULL,
-    puntaje INT NOT NULL DEFAULT 0
+    puntaje INT NOT NULL DEFAULT 0,
+    id_carrera INT
 );
 
 CREATE TABLE IF NOT EXIST carrera(
