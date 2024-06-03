@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXIST alumno(
     contrasena VARCHAR() NOT NULL,
     telefono VARCHAR(11) NOT NULL,
     puntaje INT NOT NULL DEFAULT 0,
-    id_carrera INT
+    id_carrera INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXIST carrera(
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXIST equipo(
 CREATE TABLE IF NOT EXIST partido(
     id INT PRIMARY KEY,
     fecha DATE NOT NULL,
-    id_etapa INT
+    id_etapa INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXIST etapa(
@@ -45,23 +45,23 @@ CREATE TABLE IF NOT EXIST etapa(
 CREATE TABLE IF NOT EXIST juega(
     id INT PRIMARY KEY,
     goles INT NOT NULL,
-    id_equipo INT,
-    id_partido INT
+    id_equipo INT NOT NULL,
+    id_partido INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXIST elige(
     id INT PRIMARY KEY,
-    id_alumno INT,
-    campeon INT,
-    subcampeon INT
+    id_alumno INT NOT NULL,
+    campeon INT NOT NULL,
+    subcampeon INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXIST predice(
     id INT PRIMARY KEY,
     goles INT NOT NULL,
-    idPartido INT,
-    idEquipo INT,
-    idAlumno INT
+    idPartido INT NOT NULL,
+    idEquipo INT NOT NULL,
+    idAlumno INT NOT NULL
 );
 
 ALTER TABLE alumno ADD FOREIGN KEY id_carrera REFERENCES carrera(id);
