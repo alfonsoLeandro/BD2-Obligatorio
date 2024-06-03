@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXIST juega(
 CREATE TABLE IF NOT EXIST elige(
     id INT PRIMARY KEY,
     id_alumno INT NOT NULL,
-    campeon INT NOT NULL,
-    subcampeon INT NOT NULL
+    id_campeon INT NOT NULL,
+    id_subcampeon INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXIST predice(
