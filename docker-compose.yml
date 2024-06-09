@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root1234
+      - MYSQL_DATABASE=obligatorio_db
+      - MYSQL_USER=obligatorio_usr
+      - MYSQL_PASSWORD=db_pwd_1223334444
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "bash", "-c", "mysql --user=$$USER_NAME --password=$$MYSQL_PASSWORD --execute 'SHOW DATABASES;'"]
+      interval: 5s
+      timeout: 50s
+      retries: 10
