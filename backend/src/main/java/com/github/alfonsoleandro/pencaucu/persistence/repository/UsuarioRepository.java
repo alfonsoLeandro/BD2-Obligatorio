@@ -15,8 +15,16 @@ import java.util.Optional;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     @Query(value = """
-            SELECT u.* FROM usuario u
+            SELECT u.* FROM usuarios u
             WHERE u.email = :email
             """, nativeQuery = true)
     Optional<Usuario> findByEmail(String email);
+
+    @Query(value = """
+            SELECT EXISTS (
+                SELECT 1 FROM usuarios u
+                WHERE u.email = :email
+            )
+            """, nativeQuery = true)
+    boolean existsByEmail(String email);
 }
