@@ -1,6 +1,7 @@
 package com.github.alfonsoleandro.pencaucu.persistence.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "alumno")
+@Table(name = "alumnos")
 public class Alumno {
 
     @Id
@@ -23,13 +24,15 @@ public class Alumno {
     @Column(name = "id")
     private int id;
 
+    @NotNull
     @OneToOne
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
     @Column(name = "puntaje")
     private String points;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_carrera")
     private Carrera carrera;
