@@ -15,35 +15,35 @@ import lombok.Setter;
 @Setter
 public class RegisterDTO {
 
-    @NotNull
+    @NotNull(message = "NOMBRE_NULO")
     private String name;
 
-    @NotNull
+    @NotNull(message = "APELLIDO_NULO")
     private String surname;
 
-    @NotNull
-    @Pattern(regexp = "^[0-9]{8}$")
+    @NotNull(message = "CI_NULO")
+    @Pattern(regexp = "^[0-9]{8}$", message = "CI_INVALIDO")
     private String ci;
 
-    @NotNull
-    @Email
+    @NotNull(message = "EMAIL_NULO")
+    @Email(message = "EMAIL_INVALIDO")
     private String email;
 
-    @NotNull
-    @Size(min = 8)
+    @NotNull(message = "PASSWORD_NULO")
+    @Size(min = 8, message = "PASSWORD_DEMASIADO_CORTO")
     private String password;
 
-    @NotNull
-    @Size(min = 8)
+    @NotNull(message = "PHONE_NULO")
+    @Size(min = 8, message = "PHONE_INVALIDO")
     private String phone;
 
-    @NotNull
+    @NotNull(message = "ID_CARRERA_NULO")
     private int idCarrera;
 
-    @NotNull
+    @NotNull(message = "ID_CAMPEON_NULO")
     private int idCampeon;
 
-    @NotNull
+    @NotNull(message = "ID_SUBCAMPEON_NULO")
     private int idSubcampeon;
 
 }
