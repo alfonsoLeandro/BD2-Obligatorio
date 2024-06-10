@@ -8,5 +8,5 @@ import com.github.alfonsoleandro.pencaucu.business.exception.ExceptionCode;
  */
 public enum AuthExceptionCode implements ExceptionCode {
 
-    USUARIO_YA_EXISTE;
+    USUARIO_YA_EXISTE
 }
