@@ -8,4 +8,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: mysql
-    database-platform: org.hibernate.dialect.MySqlDialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+security:
+  jwt:
+    expiration-time-in-days: 10
