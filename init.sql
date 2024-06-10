@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS usuarios
     nombre     VARCHAR(20) NOT NULL,
     apellido   VARCHAR(20) NOT NULL,
     email      VARCHAR(50) NOT NULL,
-    contrasena VARCHAR(32) NOT NULL,
+    contrasena VARCHAR(60) NOT NULL,
     telefono   VARCHAR(11) NOT NULL,
     role       SMALLINT    NOT NULL
 );
