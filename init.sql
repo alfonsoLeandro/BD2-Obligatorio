@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS predice
 );
 
 ALTER TABLE alumno
-    ADD FOREIGN KEY (id_usuario) REFERENCES user (id);
+    ADD FOREIGN KEY (id_usuario) REFERENCES usuario (id);
 ALTER TABLE alumno
     ADD FOREIGN KEY (id_carrera) REFERENCES carrera (id);
 
