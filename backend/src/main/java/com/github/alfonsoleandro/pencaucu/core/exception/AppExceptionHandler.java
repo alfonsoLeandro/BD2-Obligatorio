@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,6 +49,15 @@ public class AppExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body(buildErrorApiResponse("BAD_CREDENTIALS", request));
+    }
+
+    @ResponseBody
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ErrorApiResponse> notFoundExceptionHandler(HttpRequestMethodNotSupportedException ex, WebRequest request) {
+        log.error("Not found exception", ex);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(buildErrorApiResponse("NOT_FOUND", request));
     }
 
     @ResponseBody
