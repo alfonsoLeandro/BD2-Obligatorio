@@ -1,6 +1,7 @@
 package com.github.alfonsoleandro.pencaucu.config.security;
 
 import com.github.alfonsoleandro.pencaucu.config.JwtAuthenticationFilter;
+import com.github.alfonsoleandro.pencaucu.persistence.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,10 +30,9 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
-                        .requestMatchers("/api/v1/auth/**")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
+                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/admin/**").hasAnyAuthority(Role.ADMIN.toString())
+                        .anyRequest().authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(this.authenticationProvider)
