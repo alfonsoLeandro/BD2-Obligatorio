@@ -4,6 +4,7 @@ import com.github.alfonsoleandro.pencaucu.rest.exception.ApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +39,15 @@ public class AppExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(buildErrorApiResponse(firstErrorMessage, request));
+    }
+
+    @ResponseBody
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorApiResponse> badCredentialExceptionHandler(BadCredentialsException ex, WebRequest request) {
+        log.error("Credentials exception", ex);
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(buildErrorApiResponse("BAD_CREDENTIALS", request));
     }
 
     @ResponseBody
