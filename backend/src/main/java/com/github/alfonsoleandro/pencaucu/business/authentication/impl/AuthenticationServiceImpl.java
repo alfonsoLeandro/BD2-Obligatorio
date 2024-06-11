@@ -2,6 +2,7 @@ package com.github.alfonsoleandro.pencaucu.business.authentication.impl;
 
 import com.github.alfonsoleandro.pencaucu.business.authentication.AuthenticationService;
 import com.github.alfonsoleandro.pencaucu.business.authentication.exception.AuthExceptionCode;
+import com.github.alfonsoleandro.pencaucu.business.authentication.model.request.LoginDTO;
 import com.github.alfonsoleandro.pencaucu.business.authentication.model.request.RegisterDTO;
 import com.github.alfonsoleandro.pencaucu.business.authentication.model.response.AuthenticationDTO;
 import com.github.alfonsoleandro.pencaucu.business.carrera.exception.CarreraExceptionCode;
@@ -15,6 +16,8 @@ import com.github.alfonsoleandro.pencaucu.rest.exception.ConflictException;
 import com.github.alfonsoleandro.pencaucu.rest.exception.NotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +30,13 @@ import org.springframework.stereotype.Service;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final AlumnoRepository alumnoRepository;
+    private final AuthenticationManager authenticationManager;
     private final CarreraRepository carreraRepository;
     private final EleccionRepository eleccionRepository;
     private final EquipoRepository equipoRepository;
-    private final UsuarioRepository usuarioRepository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-
+    private final PasswordEncoder passwordEncoder;
+    private final UsuarioRepository usuarioRepository;
 
     @Override
     @Transactional
@@ -42,7 +45,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new ConflictException(AuthExceptionCode.USUARIO_YA_EXISTE);
         }
 
-        if(registerBody.getIdSubcampeon() == registerBody.getIdCampeon()){
+        if (registerBody.getIdSubcampeon() == registerBody.getIdCampeon()) {
             throw new ConflictException(EquipoExceptionCode.CAMPEON_IGUAL_SUBCAMPEON);
         }
 
@@ -68,6 +71,21 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         eleccionAlumno.setCampeon(campeon);
         eleccionAlumno.setSubcampeon(subCampeon);
         this.eleccionRepository.save(eleccionAlumno);
+
+        AuthenticationDTO authenticationDTO = new AuthenticationDTO();
+        authenticationDTO.setToken(this.jwtService.generateToken(usuario));
+
+        return authenticationDTO;
+    }
+
+    @Override
+    public AuthenticationDTO login(LoginDTO registerBody) throws ApiException {
+        this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                registerBody.getEmail(),
+                registerBody.getPassword()
+        ));
+        Usuario usuario = this.usuarioRepository.findByEmail(registerBody.getEmail())
+                .orElseThrow(() -> new NotFoundException(AuthExceptionCode.USUARIO_NO_ENCONTRADO));
 
         AuthenticationDTO authenticationDTO = new AuthenticationDTO();
         authenticationDTO.setToken(this.jwtService.generateToken(usuario));

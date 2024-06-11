@@ -1,5 +1,6 @@
 package com.github.alfonsoleandro.pencaucu.business.authentication;
 
+import com.github.alfonsoleandro.pencaucu.business.authentication.model.request.LoginDTO;
 import com.github.alfonsoleandro.pencaucu.business.authentication.model.request.RegisterDTO;
 import com.github.alfonsoleandro.pencaucu.business.authentication.model.response.AuthenticationDTO;
 import com.github.alfonsoleandro.pencaucu.rest.exception.ApiException;
@@ -11,5 +12,7 @@ import com.github.alfonsoleandro.pencaucu.rest.exception.ApiException;
 public interface AuthenticationService {
 
     AuthenticationDTO register(RegisterDTO registerBody) throws ApiException;
+
+    AuthenticationDTO login(LoginDTO registerBody) throws ApiException;
 
 }

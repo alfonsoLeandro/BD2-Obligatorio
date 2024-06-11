@@ -1,6 +1,7 @@
 package com.github.alfonsoleandro.pencaucu.rest;
 
 import com.github.alfonsoleandro.pencaucu.business.authentication.AuthenticationService;
+import com.github.alfonsoleandro.pencaucu.business.authentication.model.request.LoginDTO;
 import com.github.alfonsoleandro.pencaucu.business.authentication.model.request.RegisterDTO;
 import com.github.alfonsoleandro.pencaucu.business.authentication.model.response.AuthenticationDTO;
 import com.github.alfonsoleandro.pencaucu.rest.exception.ApiException;
@@ -27,6 +28,11 @@ public class AuthenticationController {
     @PostMapping("/register")
     public AuthenticationDTO register(@RequestBody @Valid RegisterDTO registerBody) throws ApiException {
         return this.authenticationService.register(registerBody);
+    }
+
+    @PostMapping("/login")
+    public AuthenticationDTO login(@RequestBody @Valid LoginDTO loginBody) throws ApiException {
+        return this.authenticationService.login(loginBody);
     }
 
 
