@@ -74,6 +74,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         AuthenticationDTO authenticationDTO = new AuthenticationDTO();
         authenticationDTO.setToken(this.jwtService.generateToken(usuario));
+        authenticationDTO.setRol(Role.STUDENT);
 
         return authenticationDTO;
     }
@@ -89,18 +90,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         AuthenticationDTO authenticationDTO = new AuthenticationDTO();
         authenticationDTO.setToken(this.jwtService.generateToken(usuario));
+        authenticationDTO.setRol(usuario.getRole());
 
         return authenticationDTO;
     }
 
     private Usuario buildUsuario(RegisterDTO registerBody) {
         Usuario usuario = new Usuario();
-        usuario.setName(registerBody.getName());
-        usuario.setSurname(registerBody.getSurname());
+        usuario.setName(registerBody.getNombre());
+        usuario.setSurname(registerBody.getApellido());
         usuario.setCi(registerBody.getCi());
         usuario.setEmail(registerBody.getEmail());
         usuario.setPassword(this.passwordEncoder.encode(registerBody.getPassword()));
-        usuario.setPhone(registerBody.getPhone());
+        usuario.setPhone(registerBody.getTelefono());
         usuario.setRole(Role.STUDENT);
         return usuario;
     }

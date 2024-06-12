@@ -1,5 +1,6 @@
 package com.github.alfonsoleandro.pencaucu.business.authentication.model.response;
 
+import com.github.alfonsoleandro.pencaucu.persistence.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,5 +13,6 @@ import lombok.Setter;
 public class AuthenticationDTO {
 
     private String token;
+    private Role rol;
 
 }
