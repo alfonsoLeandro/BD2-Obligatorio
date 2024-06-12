@@ -16,10 +16,10 @@ import lombok.Setter;
 public class RegisterDTO {
 
     @NotNull(message = "NOMBRE_NULO")
-    private String name;
+    private String nombre;
 
     @NotNull(message = "APELLIDO_NULO")
-    private String surname;
+    private String apellido;
 
     @NotNull(message = "CI_NULO")
     @Pattern(regexp = "^[0-9]{8}$", message = "CI_INVALIDO")
@@ -35,7 +35,7 @@ public class RegisterDTO {
 
     @NotNull(message = "PHONE_NULO")
     @Size(min = 8, message = "PHONE_INVALIDO")
-    private String phone;
+    private String telefono;
 
     @NotNull(message = "ID_CARRERA_NULO")
     private int idCarrera;
