@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JuegoRepository extends JpaRepository<Juego, Integer> {
 
+    // Warning saying that the return type should be boolean, it should not.
+    @SuppressWarnings("SpringDataRepositoryMethodReturnTypeInspection")
     @Query(value = """
             SELECT EXISTS (SELECT j.id
                            FROM juegos j
