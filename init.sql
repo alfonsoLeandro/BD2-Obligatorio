@@ -95,3 +95,6 @@ ALTER TABLE predicciones
     ADD FOREIGN KEY (id_equipo) REFERENCES equipos(id);
 ALTER TABLE predicciones
     ADD FOREIGN KEY (id_alumno) REFERENCES alumnos(id);
+
+CREATE UNIQUE INDEX juegos_id_equipo_id_partido_uindex
+    on juegos (id_equipo, id_partido);
