@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS etapas
 CREATE TABLE IF NOT EXISTS juegos
 (
     id         INT PRIMARY KEY AUTO_INCREMENT,
-    goles      INT NOT NULL,
+    goles      INT,
     id_equipo  INT NOT NULL,
     id_partido INT NOT NULL
 );
