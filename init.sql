@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS equipos
 CREATE TABLE IF NOT EXISTS partidos
 (
     id       INT PRIMARY KEY AUTO_INCREMENT,
-    fecha    DATETME NOT NULL,
+    fecha    TIMESTAMP NOT NULL,
     id_etapa INT  NOT NULL
 );
 
