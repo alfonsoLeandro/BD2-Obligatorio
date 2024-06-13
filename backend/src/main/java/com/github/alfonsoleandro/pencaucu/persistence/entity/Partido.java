@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class Partido {
 
     @NotNull
     @Column(name = "fecha", nullable = false)
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
