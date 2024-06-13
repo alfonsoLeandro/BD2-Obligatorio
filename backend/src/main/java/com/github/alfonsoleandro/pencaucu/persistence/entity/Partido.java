@@ -5,8 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -21,7 +20,7 @@ public class Partido {
 
     @NotNull
     @Column(name = "fecha", nullable = false)
-    private LocalDateTime fecha;
+    private Timestamp fecha;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
