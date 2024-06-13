@@ -14,4 +14,6 @@ public interface PartidoService {
     List<PartidoDTO> searchPartidos(String searchText, Boolean jugado, Boolean conPrediccion);
 
     List<Timestamp> getAvailableFechas();
+
+    void setPartidoEquipos(int id, int idEquipo1, int idEquipo2);
 }
