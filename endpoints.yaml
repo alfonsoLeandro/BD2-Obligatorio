@@ -1,0 +1,247 @@
+endpoints:
+    Autenticacion ("/auth"):
+        POST "/register":
+            request:
+              {
+                  nombre: string,
+                  apellido: string,
+                  ci: string,
+                  email: string,
+                  password: string,
+                  telefono: string,
+                  idCarrera: number,
+                  idCampeon: number,
+                  idSubcampeon: number
+              }
+            response:
+              {
+                  token: string,
+                  rol: string // "ADMIN" o "USUARIO"
+              }
+
+        POST "/login":
+            request:
+              {
+                  email: string,
+                  password: string,
+              }
+            response:
+              {
+                  token: string,
+                  rol: string // "ADMIN" o "USUARIO"
+              }
+
+    Partido ("/partidos"):
+        GET "/":
+            params:
+                busqueda: string
+                jugado: boolean
+                conPrediccion: boolean
+            response: [
+                {
+                    id: number,
+                    fecha: Datetime,
+                    etapa: {
+                        id: number,
+                        nombre: string
+                    },
+                    equipo1: {
+                        id: number,
+                        nombre: string,
+                        goles: number,
+                        prediccion: number
+                    },
+                    equipo2: {
+                        id: number,
+                        nombre: string,
+                        goles: number,
+                        prediccion: number
+                    }
+                }
+            ]
+
+    Partido Admin ("/admin/partidos"):
+        GET "/fechas":
+            response: Datetime[]
+
+        POST "/":
+            request:
+                {
+                  fecha: Date,
+                  equipo1: number,
+                  equipo2: number
+                }
+
+        POST "/resultado":
+            request:
+              {
+                  equipo1: {
+                      id: number,
+                      goles: number
+                  },
+                  equipo2: {
+                      id: number,
+                      goles: number
+                  }
+              }
+
+    Prediccion ("/predicciones"):
+        GET "/partido/:idPartido/self":
+            response:
+                {
+                  equipo1: {
+                      id: number,
+                      prediccion: number
+                  },
+                  equipo2: {
+                      id: number,
+                      prediccion: number
+                  }
+                }
+
+        GET "/partido/:idPartido":
+            response:
+              {
+                  tendencia: {
+                      equipo1: {
+                          id: number,
+                          nombre: string,
+                          porcentaje: number
+                      },
+                      equipo2: {
+                          id: number,
+                          nombre: string,
+                          porcentaje: number
+                      }
+                  },
+                  predicciones: [
+                      {
+                          usuario: {
+                              id: number,
+                              nombre: string,
+                              carrera: {
+                                  id: number,
+                                  nombre: string
+                              }
+                          },
+                          equipo1: {
+                              id: number,
+                              goles: number
+                          },
+                          equipo2: {
+                              id: number,
+                              goles: number
+                          }
+                      }
+                  ]
+              }
+
+        PUT "/partido/:idPartido":
+            request:
+                {
+                  equipo1: {
+                      id: number,
+                      goles: number
+                  },
+                  equipo2: {
+                      id: number,
+                      goles: number
+                  }
+                }
+
+    Prediccion Admin ("/admin/predicciones"):
+        PUT "/partido/:idPartido":
+            request:
+              {
+                  equipo1: {
+                      id: number,
+                      goles: number
+                  },
+                  equipo2: {
+                      id: number,
+                      goles: number
+                  }
+              }
+
+        DELETE "/partido/:idPartido":
+
+    Usuario ("/usuarios"):
+        GET "/":
+            params:
+                busqueda: string
+                id_carrera: number
+            response:
+                [
+                    {
+                        id: number,
+                        nombre: string,
+                        carrera: {
+                            id: number,
+                            nombre: string
+                        },
+                        puntaje: number
+                    }
+                ]
+
+        GET "/:id":
+            response:
+                {
+                    nombre: string,
+                    carrera: {
+                        id: number,
+                        nombre: string
+                    },
+                    campeon: {
+                        id: number,
+                        nombre: string
+                    },
+                    subcampeon: {
+                        id: number,
+                        nombre: string
+                    },
+                    puntaje: number,
+                    ranking: number,
+                    predicciones: [
+                        {
+                            equipo1: {
+                                id: number,
+                                nombre: string,
+                                goles: number,
+                                prediccion: number
+                            },
+                            equipo2: {
+                                id: number,
+                                nombre: string,
+                                goles: number,
+                                prediccion: number
+                            },
+                            fecha: Datetime,
+                            etapa: {
+                                id: number,
+                                nombre: string
+                            },
+                            puntaje_obtenido: number
+                        }
+                    ]
+                }
+
+        PUT "/modifyPassword":
+            params:
+                newPassword: string
+
+    Usuario Admin ("admin/usuarios"):
+        PUT "/modifyPassword/:id":
+            params:
+                newPassword: string
+
+        PUT "/:id":
+            request:
+                {
+                    nombre: string,
+                    apellido: string,
+                    ci: string,
+                    correo: string,
+                    telefono: string,
+                    id_carrera: number,
+                    es_admin: number
+                }
