@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -49,4 +50,11 @@ public interface PartidoRepository extends JpaRepository<Partido, Integer> {
                 AND (:conPrediccion IS NULL OR (p1.goles IS NOT NULL = :conPrediccion AND p2.goles IS NOT NULL = :conPrediccion))
             """, nativeQuery = true)
     List<PartidoSearchView> searchPartidos(Integer idUsuario, String busqueda, Boolean jugado, Boolean conPrediccion);
+
+    @Query(value = """
+                SELECT p.fecha
+                    FROM partidos p
+                    ORDER BY p.fecha
+            """, nativeQuery = true)
+    List<Timestamp> getAvailableFechas();
 }

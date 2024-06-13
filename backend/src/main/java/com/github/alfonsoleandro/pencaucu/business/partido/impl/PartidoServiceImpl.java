@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -31,5 +32,10 @@ public class PartidoServiceImpl implements PartidoService {
                 jugado,
                 conPrediccion);
         return partidoSearchViews.stream().map(this.partidoMapper::toDTO).toList();
+    }
+
+    @Override
+    public List<Timestamp> getAvailableFechas() {
+        return this.partidoRepository.getAvailableFechas();
     }
 }

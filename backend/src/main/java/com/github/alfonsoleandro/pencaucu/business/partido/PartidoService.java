@@ -2,6 +2,7 @@ package com.github.alfonsoleandro.pencaucu.business.partido;
 
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDTO;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -12,4 +13,5 @@ public interface PartidoService {
 
     List<PartidoDTO> searchPartidos(String searchText, Boolean jugado, Boolean conPrediccion);
 
+    List<Timestamp> getAvailableFechas();
 }
