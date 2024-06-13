@@ -18,7 +18,7 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-    @PutMapping
+    @PutMapping("/modifyPassword")
     public void modifyPassword(@RequestParam String newPassword) {
         this.usuarioService.modifyPassword(newPassword);
     }

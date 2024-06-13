@@ -15,7 +15,7 @@ public class UsuarioAdminController {
 
     private final UsuarioService usuarioService;
 
-    @PutMapping("/{id}")
+    @PutMapping("/modifyPassword/{id}")
     public void modifyPassword(@PathVariable Integer id,
                                @RequestParam String newPassword) {
         this.usuarioService.modifyPassword(id, newPassword);
