@@ -60,6 +60,61 @@ endpoints:
                 }
             ]
 
+        GET "/:id":
+            response:
+                {
+                    id: number,
+                    fecha: Datetime,
+                    etapa: {
+                        id: number,
+                        nombre: string
+                    },
+                    equipo1: {
+                        id: number,
+                        nombre: string,
+                        goles: number,
+                        prediccion: number
+                    },
+                    equipo2: {
+                        id: number,
+                        nombre: string,
+                        goles: number,
+                        prediccion: number
+                    },
+                    estadisticas: {
+                        equipo1: {
+                           id: number,
+                           nombre: string,
+                           porcentaje: number
+                        },
+                        equipo2: {
+                           id: number,
+                           nombre: string,
+                           porcentaje: number
+                        }
+                    },
+                    predicciones: [
+                        {
+                            usuario: {
+                                id: number,
+                                nombre: string,
+                                carrera: {
+                                    id: number,
+                                    nombre: string
+                                }
+                            },
+                            equipo1: {
+                                id: number,
+                                prediccion: number
+                            },
+                            equipo2: {
+                                id: number,
+                                prediccion: number
+                            }
+                        }
+                    ]
+                }
+
     Partido Admin ("/api/v1/admin/partidos"):
         GET "/fechas":
             response: Datetime[]
@@ -71,16 +126,16 @@ endpoints:
 
         POST "/resultado":
             request:
-              {
-                  equipo1: {
-                      id: number,
-                      goles: number
-                  },
-                  equipo2: {
-                      id: number,
-                      goles: number
-                  }
-              }
+                {
+                    equipo1: {
+                        id: number,
+                        goles: number
+                    },
+                    equipo2: {
+                        id: number,
+                        goles: number
+                    }
+                }
 
     Prediccion ("/api/v1/predicciones"):
         GET "/partido/:idPartido/self":
