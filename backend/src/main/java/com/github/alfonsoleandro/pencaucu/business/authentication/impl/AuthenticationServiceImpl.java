@@ -61,10 +61,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.alumnoRepository.save(alumno);
 
         Equipo campeon = this.equipoRepository.findById(registerBody.getIdCampeon())
-                .orElseThrow(() -> new NotFoundException(EquipoExceptionCode.CAMPEON_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(EquipoExceptionCode.CAMPEON_NO_ENCONTRADO));
 
         Equipo subCampeon = this.equipoRepository.findById(registerBody.getIdSubcampeon())
-                .orElseThrow(() -> new NotFoundException(EquipoExceptionCode.SUBCAMPEON_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(EquipoExceptionCode.SUBCAMPEON_NO_ENCONTRADO));
 
         Eleccion eleccionAlumno = new Eleccion();
         eleccionAlumno.setAlumno(alumno);

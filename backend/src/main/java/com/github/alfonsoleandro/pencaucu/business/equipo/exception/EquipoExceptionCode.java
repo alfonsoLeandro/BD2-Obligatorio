@@ -8,8 +8,10 @@ import com.github.alfonsoleandro.pencaucu.business.exception.ExceptionCode;
  */
 public enum EquipoExceptionCode implements ExceptionCode {
 
-    CAMPEON_NOT_FOUND,
-    SUBCAMPEON_NOT_FOUND,
-    CAMPEON_IGUAL_SUBCAMPEON
-
+    CAMPEON_NO_ENCONTRADO,
+    SUBCAMPEON_NO_ENCONTRADO,
+    CAMPEON_IGUAL_SUBCAMPEON,
+    EQUIPO_1_NO_ENCONTRADO,
+    EQUIPO_2_NO_ENCONTRADO,
+    EQUIPO_1_IGUAL_EQUIPO_2
 }
