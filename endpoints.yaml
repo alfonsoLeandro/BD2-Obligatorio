@@ -1,5 +1,5 @@
 endpoints:
-    Autenticacion ("/auth"):
+    Autenticacion ("/api/v1/auth"):
         POST "/register":
             request:
               {
@@ -31,7 +31,7 @@ endpoints:
                   rol: string // "ADMIN" o "USUARIO"
               }
 
-    Partido ("/partidos"):
+    Partido ("/api/v1/partidos"):
         GET "/":
             params:
                 busqueda: string
@@ -60,7 +60,7 @@ endpoints:
                 }
             ]
 
-    Partido Admin ("/admin/partidos"):
+    Partido Admin ("/api/v1/admin/partidos"):
         GET "/fechas":
             response: Datetime[]
 
@@ -85,7 +85,7 @@ endpoints:
                   }
               }
 
-    Prediccion ("/predicciones"):
+    Prediccion ("/api/v1/predicciones"):
         GET "/partido/:idPartido/self":
             response:
                 {
@@ -149,7 +149,7 @@ endpoints:
                   }
                 }
 
-    Prediccion Admin ("/admin/predicciones"):
+    Prediccion Admin ("/api/v1/admin/predicciones"):
         PUT "/partido/:idPartido":
             request:
               {
@@ -165,7 +165,7 @@ endpoints:
 
         DELETE "/partido/:idPartido":
 
-    Usuario ("/usuarios"):
+    Usuario ("/api/v1/usuarios"):
         GET "/":
             params:
                 busqueda: string
@@ -229,7 +229,7 @@ endpoints:
             params:
                 newPassword: string
 
-    Usuario Admin ("admin/usuarios"):
+    Usuario Admin ("/api/v1/admin/usuarios"):
         PUT "/modifyPassword/:id":
             params:
                 newPassword: string
