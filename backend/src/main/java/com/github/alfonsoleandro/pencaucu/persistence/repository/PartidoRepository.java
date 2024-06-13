@@ -4,10 +4,12 @@ import com.github.alfonsoleandro.pencaucu.persistence.entity.Partido;
 import com.github.alfonsoleandro.pencaucu.persistence.view.PartidoSearchView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author alfonsoLeandro
@@ -16,6 +18,13 @@ import java.util.List;
 @Repository
 public interface PartidoRepository extends JpaRepository<Partido, Integer> {
 
+    @Override
+    @NonNull
+    @Query(value = """
+                SELECT p.* FROM partidos p
+                WHERE p.id = :id
+            """, nativeQuery = true)
+    Optional<Partido> findById(@NonNull Integer id);
 
     @Query(value = """
             SELECT p.id         AS id,
@@ -57,4 +66,5 @@ public interface PartidoRepository extends JpaRepository<Partido, Integer> {
                     ORDER BY p.fecha
             """, nativeQuery = true)
     List<Timestamp> getAvailableFechas();
+
 }
