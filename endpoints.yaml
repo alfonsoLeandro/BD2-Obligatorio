@@ -64,13 +64,10 @@ endpoints:
         GET "/fechas":
             response: Datetime[]
 
-        POST "/":
-            request:
-                {
-                  fecha: Date,
-                  equipo1: number,
-                  equipo2: number
-                }
+        POST "/:id":
+            params:
+                idEquipo1: number,
+                idEquipo2: number
 
         POST "/resultado":
             request:
