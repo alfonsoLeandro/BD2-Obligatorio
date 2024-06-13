@@ -1,4 +1,4 @@
-package com.github.alfonsoleandro.pencaucu.business.equipo.exception.exception;
+package com.github.alfonsoleandro.pencaucu.business.equipo.exception;
 
 import com.github.alfonsoleandro.pencaucu.business.exception.ExceptionCode;
 

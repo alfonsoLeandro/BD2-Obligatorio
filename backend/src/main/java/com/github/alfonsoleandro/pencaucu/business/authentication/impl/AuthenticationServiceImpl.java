@@ -6,7 +6,7 @@ import com.github.alfonsoleandro.pencaucu.business.authentication.model.request.
 import com.github.alfonsoleandro.pencaucu.business.authentication.model.request.RegisterDTO;
 import com.github.alfonsoleandro.pencaucu.business.authentication.model.response.AuthenticationDTO;
 import com.github.alfonsoleandro.pencaucu.business.carrera.exception.CarreraExceptionCode;
-import com.github.alfonsoleandro.pencaucu.business.equipo.exception.exception.EquipoExceptionCode;
+import com.github.alfonsoleandro.pencaucu.business.equipo.exception.EquipoExceptionCode;
 import com.github.alfonsoleandro.pencaucu.business.jwt.JwtService;
 import com.github.alfonsoleandro.pencaucu.persistence.Role;
 import com.github.alfonsoleandro.pencaucu.persistence.entity.*;
