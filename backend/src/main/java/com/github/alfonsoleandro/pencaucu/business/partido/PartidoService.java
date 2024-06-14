@@ -1,6 +1,7 @@
 package com.github.alfonsoleandro.pencaucu.business.partido;
 
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDTO;
+import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDetailsDTO;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -16,4 +17,6 @@ public interface PartidoService {
     List<Timestamp> getAvailableFechas();
 
     void setPartidoEquipos(int id, int idEquipo1, int idEquipo2);
+
+    PartidoDetailsDTO getPartidoData(int id);
 }
