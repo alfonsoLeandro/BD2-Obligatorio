@@ -59,20 +59,8 @@ public class PartidoServiceImpl implements PartidoService {
 	@Transactional
 	@Override
 	public void setPartidoEquipos(int id, int idEquipo1, int idEquipo2) {
-		// Validate equipos are different
-		if (idEquipo1 == idEquipo2) {
-			throw new ConflictException(EquipoExceptionCode.EQUIPO_1_IGUAL_EQUIPO_2);
-		}
-		// Validate partido and equipos exist
-		if (this.partidoRepository.findById(id).isEmpty()) {
-			throw new NotFoundException(PartidoExceptionCode.PARTIDO_NO_ENCONTRADO);
-		}
-		if (this.equipoRepository.findById(idEquipo1).isEmpty()) {
-			throw new NotFoundException(EquipoExceptionCode.EQUIPO_1_NO_ENCONTRADO);
-		}
-		if (this.equipoRepository.findById(idEquipo2).isEmpty()) {
-			throw new NotFoundException(EquipoExceptionCode.EQUIPO_2_NO_ENCONTRADO);
-		}
+		validatePartido(id);
+		validateEquipos(idEquipo1, idEquipo2);
 
 		// If equipos for partido are already set, delete them
 		boolean exists = this.juegoRepository.existsByPartidoId(id) == 1;
@@ -87,9 +75,7 @@ public class PartidoServiceImpl implements PartidoService {
 	@Override
 	public PartidoDetailsDTO getPartidoData(int id) {
 		// Validate partido exists
-		if (this.partidoRepository.findById(id).isEmpty()) {
-			throw new NotFoundException(PartidoExceptionCode.PARTIDO_NO_ENCONTRADO);
-		}
+		validatePartido(id);
 
 		// Get partido data
 		Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -118,6 +104,38 @@ public class PartidoServiceImpl implements PartidoService {
 		partidoDetailsDTO.setPredicciones(prediccionesDTOS);
 
 		return partidoDetailsDTO;
+	}
+
+	/**
+	 * Validates a Partido with the given ID exists.
+	 *
+	 * @param id The id of the Partido.
+	 */
+	private void validatePartido(int id) {
+		if (this.partidoRepository.findById(id).isEmpty()) {
+			throw new NotFoundException(PartidoExceptionCode.PARTIDO_NO_ENCONTRADO);
+		}
+	}
+
+	/**
+	 * Validates the given equipos exist and are different.
+	 *
+	 * @param idEquipo1 The id of the first Equipo.
+	 * @param idEquipo2 The id of the second Equipo.
+	 */
+	private void validateEquipos(Integer idEquipo1, Integer idEquipo2) {
+		// Validate equipos are different
+		if (idEquipo1.equals(idEquipo2)) {
+			throw new ConflictException(EquipoExceptionCode.EQUIPO_1_IGUAL_EQUIPO_2);
+		}
+		// Validate equipo1
+		if (this.equipoRepository.findById(idEquipo1).isEmpty()) {
+			throw new NotFoundException(EquipoExceptionCode.EQUIPO_1_NO_ENCONTRADO);
+		}
+		// Validate equipo2
+		if (this.equipoRepository.findById(idEquipo2).isEmpty()) {
+			throw new NotFoundException(EquipoExceptionCode.EQUIPO_2_NO_ENCONTRADO);
+		}
 	}
 
 }
