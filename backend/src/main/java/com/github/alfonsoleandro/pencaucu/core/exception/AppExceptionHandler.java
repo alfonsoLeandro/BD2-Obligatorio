@@ -1,6 +1,7 @@
 package com.github.alfonsoleandro.pencaucu.core.exception;
 
 import com.github.alfonsoleandro.pencaucu.rest.exception.ApiException;
+import jakarta.servlet.ServletException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -52,8 +54,8 @@ public class AppExceptionHandler {
     }
 
     @ResponseBody
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ErrorApiResponse> notFoundExceptionHandler(HttpRequestMethodNotSupportedException ex, WebRequest request) {
+    @ExceptionHandler({HttpRequestMethodNotSupportedException.class, NoResourceFoundException.class})
+    public ResponseEntity<ErrorApiResponse> notFoundExceptionHandler(ServletException ex, WebRequest request) {
         log.error("Not found exception", ex);
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
