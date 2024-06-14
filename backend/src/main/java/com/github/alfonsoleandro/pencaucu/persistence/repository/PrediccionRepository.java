@@ -3,6 +3,7 @@ package com.github.alfonsoleandro.pencaucu.persistence.repository;
 import com.github.alfonsoleandro.pencaucu.persistence.entity.Prediccion;
 import com.github.alfonsoleandro.pencaucu.persistence.view.AlumnosPrediccionesView;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -60,4 +61,11 @@ public interface PrediccionRepository extends JpaRepository<Prediccion, Integer>
 				AND p1.id_equipo = :idEquipo1
 			""", nativeQuery = true)
 	List<AlumnosPrediccionesView> getPredicciones(int idPartido, Integer idEquipo1, Integer idEquipo2);
+
+	@Modifying
+	@Query(value = """
+			DELETE FROM predicciones
+			WHERE id_partido = :id
+			""", nativeQuery = true)
+	void deletePrediccionesForPartido(int id);
 }
