@@ -73,42 +73,32 @@ endpoints:
                         id: number,
                         nombre: string,
                         goles: number,
-                        prediccion: number
+                        prediccion: number,
+                        porcentaje: number
                     },
                     equipo2: {
                         id: number,
                         nombre: string,
                         goles: number,
-                        prediccion: number
-                    },
-                    estadisticas: {
-                        equipo1: {
-                           id: number,
-                           nombre: string,
-                           porcentaje: number
-                        },
-                        equipo2: {
-                           id: number,
-                           nombre: string,
-                           porcentaje: number
-                        }
+                        prediccion: number,
+                        porcentaje: number
                     },
                     predicciones: [
                         {
-                            usuario: {
+                            idAlumno: number,
+                            nombreAlumno: string,
+                            carrera: {
                                 id: number,
-                                nombre: string,
-                                carrera: {
-                                    id: number,
-                                    nombre: string
-                                }
+                                nombre: string
                             },
                             equipo1: {
                                 id: number,
+                                nombre: string,
                                 prediccion: number
                             },
                             equipo2: {
                                 id: number,
+                                nombre: string,
                                 prediccion: number
                             }
                         }
@@ -138,56 +128,6 @@ endpoints:
                 }
 
     Prediccion ("/api/v1/predicciones"):
-        GET "/partido/:idPartido/self":
-            response:
-                {
-                  equipo1: {
-                      id: number,
-                      prediccion: number
-                  },
-                  equipo2: {
-                      id: number,
-                      prediccion: number
-                  }
-                }
-
-        GET "/partido/:idPartido":
-            response:
-              {
-                  tendencia: {
-                      equipo1: {
-                          id: number,
-                          nombre: string,
-                          porcentaje: number
-                      },
-                      equipo2: {
-                          id: number,
-                          nombre: string,
-                          porcentaje: number
-                      }
-                  },
-                  predicciones: [
-                      {
-                          usuario: {
-                              id: number,
-                              nombre: string,
-                              carrera: {
-                                  id: number,
-                                  nombre: string
-                              }
-                          },
-                          equipo1: {
-                              id: number,
-                              goles: number
-                          },
-                          equipo2: {
-                              id: number,
-                              goles: number
-                          }
-                      }
-                  ]
-              }
-
         PUT "/partido/:idPartido":
             request:
                 {
