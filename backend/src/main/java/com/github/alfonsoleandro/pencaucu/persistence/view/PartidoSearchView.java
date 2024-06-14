@@ -1,6 +1,6 @@
 package com.github.alfonsoleandro.pencaucu.persistence.view;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 /**
  * @author alfonsoLeandro
@@ -10,7 +10,7 @@ public interface PartidoSearchView {
 
     Integer getId();
 
-    LocalDateTime getFecha();
+    Timestamp getFecha();
 
     Integer getIdEtapa();
 

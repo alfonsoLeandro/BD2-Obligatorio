@@ -33,15 +33,15 @@ public class PartidoServiceImpl implements PartidoService {
     private final PartidoMapper partidoMapper;
     private final PartidoRepository partidoRepository;
 
-    @Override
-    public List<PartidoDTO> searchPartidos(String searchText, Boolean jugado, Boolean conPrediccion) {
-        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<PartidoSearchView> partidoSearchViews = this.partidoRepository.searchPartidos(usuario.getId(),
-                searchText,
-                jugado,
-                conPrediccion);
-        return partidoSearchViews.stream().map(this.partidoMapper::toDTO).toList();
-    }
+	@Override
+	public List<PartidoDTO> searchPartidos(String searchText, Boolean jugado, Boolean conPrediccion) {
+		Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<PartidoSearchView> partidoSearchViews = this.partidoRepository.searchPartidos(usuario.getId(),
+				searchText,
+				jugado,
+				conPrediccion);
+		return partidoSearchViews.stream().map(this.partidoMapper::viewToDTO).toList();
+	}
 
     @Override
     public List<Timestamp> getAvailableFechas() {

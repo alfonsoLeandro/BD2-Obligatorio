@@ -1,6 +1,6 @@
 package com.github.alfonsoleandro.pencaucu.business.partido.model.response;
 
-import com.github.alfonsoleandro.pencaucu.business.equipo.model.response.EquipoPrediccionDTO;
+import com.github.alfonsoleandro.pencaucu.business.equipo.model.response.EquipoGoalsPrediccionDTO;
 import com.github.alfonsoleandro.pencaucu.business.etapa.model.response.EtapaDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +23,7 @@ public class PartidoDTO {
 
     private EtapaDTO etapa;
 
-    private EquipoPrediccionDTO equipo1;
+    private EquipoGoalsPrediccionDTO equipo1;
 
-    private EquipoPrediccionDTO equipo2;
+    private EquipoGoalsPrediccionDTO equipo2;
 }

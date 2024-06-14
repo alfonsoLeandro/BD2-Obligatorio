@@ -25,5 +25,6 @@ public interface PartidoMapper {
     @Mapping(source = "golesEquipo2", target = "equipo2.goles")
     @Mapping(source = "prediccionEquipo2", target = "equipo2.prediccion")
     PartidoDTO toDTO(PartidoSearchView view);
+    PartidoDTO viewToDTO(PartidoSearchView view);
 
 }
