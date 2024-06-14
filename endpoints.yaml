@@ -114,7 +114,7 @@ endpoints:
                 idEquipo1: number,
                 idEquipo2: number
 
-        POST "/resultado":
+        POST "/resultado/:id":
             request:
                 {
                     equipo1: {
