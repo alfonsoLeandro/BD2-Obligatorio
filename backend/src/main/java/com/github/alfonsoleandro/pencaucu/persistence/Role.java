@@ -5,6 +5,6 @@ package com.github.alfonsoleandro.pencaucu.persistence;
  * @since 0.0.1
  */
 public enum Role {
-    STUDENT,
+    ALUMNO,
     ADMIN;
 }

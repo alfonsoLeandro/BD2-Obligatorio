@@ -74,7 +74,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         AuthenticationDTO authenticationDTO = new AuthenticationDTO();
         authenticationDTO.setToken(this.jwtService.generateToken(usuario));
-        authenticationDTO.setRol(Role.STUDENT);
+        authenticationDTO.setRol(Role.ALUMNO);
 
         return authenticationDTO;
     }
@@ -103,7 +103,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         usuario.setEmail(registerBody.getEmail());
         usuario.setPassword(this.passwordEncoder.encode(registerBody.getPassword()));
         usuario.setPhone(registerBody.getTelefono());
-        usuario.setRole(Role.STUDENT);
+        usuario.setRole(Role.ALUMNO);
         return usuario;
     }
 }
