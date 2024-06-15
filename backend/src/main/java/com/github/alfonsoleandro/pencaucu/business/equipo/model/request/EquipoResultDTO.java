@@ -16,7 +16,7 @@ public class EquipoResultDTO {
 	@NotNull(message = "ID_EQUIPO_REQUERIDO")
 	private Integer id;
 
-	@NotNull(message = "ID_EQUIPO_REQUERIDO")
+	@NotNull(message = "GOLES_REQUERIDO")
 	@Min(value = 0, message = "GOLES_DEBE_SER_POSITIVO")
 	private Integer goles;
 
