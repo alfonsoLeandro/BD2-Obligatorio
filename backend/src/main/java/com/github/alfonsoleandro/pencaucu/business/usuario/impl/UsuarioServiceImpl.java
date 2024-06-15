@@ -24,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void modifyPassword(String newPassword) {
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        modifyPassword(usuario.getId(), newPassword);
+        modifyPassword(usuario.getId(), this.passwordEncoder.encode(newPassword));
     }
 
     @Transactional
