@@ -141,22 +141,6 @@ endpoints:
                   }
                 }
 
-    Prediccion Admin ("/api/v1/admin/predicciones"):
-        PUT "/partido/:idPartido":
-            request:
-              {
-                  equipo1: {
-                      id: number,
-                      goles: number
-                  },
-                  equipo2: {
-                      id: number,
-                      goles: number
-                  }
-              }
-
-        DELETE "/partido/:idPartido":
-
     Usuario ("/api/v1/usuarios"):
         GET "/":
             params:
