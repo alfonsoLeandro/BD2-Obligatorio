@@ -14,11 +14,11 @@ import lombok.Setter;
 @Setter
 public class PartidoResultDTO {
 
-	@NotNull(message = "EQUIPO_REQUERIDO")
+	@NotNull(message = "EQUIPO_1_REQUERIDO")
 	@Valid
 	private EquipoResultDTO equipo1;
 
-	@NotNull(message = "EQUIPO_REQUERIDO")
+	@NotNull(message = "EQUIPO_2_REQUERIDO")
 	@Valid
 	private EquipoResultDTO equipo2;
 
