@@ -1,5 +1,6 @@
 package com.github.alfonsoleandro.pencaucu.business.partido;
 
+import com.github.alfonsoleandro.pencaucu.business.partido.model.request.PartidoResultDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDetailsDTO;
 
@@ -19,4 +20,7 @@ public interface PartidoService {
     void setPartidoEquipos(int id, int idEquipo1, int idEquipo2);
 
     PartidoDetailsDTO getPartidoData(int id);
+
+    void setPartidoResult(int id, PartidoResultDTO partidoResultDTO);
+
 }

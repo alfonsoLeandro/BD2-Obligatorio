@@ -1,7 +1,10 @@
 package com.github.alfonsoleandro.pencaucu.rest;
 
 import com.github.alfonsoleandro.pencaucu.business.partido.PartidoService;
+import com.github.alfonsoleandro.pencaucu.business.partido.model.request.PartidoResultDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
@@ -12,6 +15,7 @@ import java.util.List;
  * @version 0.0.1
  */
 @RequiredArgsConstructor
+@Validated
 @RestController
 @RequestMapping("/api/v1/admin/partidos")
 public class PartidoAdminController {
@@ -28,6 +32,12 @@ public class PartidoAdminController {
                                   @RequestParam int idEquipo1,
                                   @RequestParam int idEquipo2) {
         this.partidoService.setPartidoEquipos(id, idEquipo1, idEquipo2);
+    }
+
+    @PostMapping("/resultado/{id}")
+    public void setPartidoEquipos(@PathVariable int id,
+                                  @RequestBody @Valid PartidoResultDTO partidoResultDTO) {
+        this.partidoService.setPartidoResult(id, partidoResultDTO);
     }
 
 }

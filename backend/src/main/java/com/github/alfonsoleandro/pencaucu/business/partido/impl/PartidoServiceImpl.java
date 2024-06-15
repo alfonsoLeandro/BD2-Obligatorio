@@ -6,6 +6,7 @@ import com.github.alfonsoleandro.pencaucu.business.equipo.exception.EquipoExcept
 import com.github.alfonsoleandro.pencaucu.business.partido.PartidoService;
 import com.github.alfonsoleandro.pencaucu.business.partido.exception.PartidoExceptionCode;
 import com.github.alfonsoleandro.pencaucu.business.partido.mapper.PartidoMapper;
+import com.github.alfonsoleandro.pencaucu.business.partido.model.request.PartidoResultDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDetailsDTO;
 import com.github.alfonsoleandro.pencaucu.persistence.entity.Usuario;
@@ -104,6 +105,35 @@ public class PartidoServiceImpl implements PartidoService {
 		partidoDetailsDTO.setPredicciones(prediccionesDTOS);
 
 		return partidoDetailsDTO;
+	}
+
+	@Transactional
+	@Override
+	public void setPartidoResult(int id, PartidoResultDTO partidoResultDTO) {
+		validatePartido(id);
+		validateEquipos(partidoResultDTO.getEquipo1().getId(),
+				partidoResultDTO.getEquipo2().getId());
+
+		// Check if juego exist, if not, throw exception
+		boolean existsPartidoEquipos = this.juegoRepository.existsByPartidoId(id) == 1;
+		if (!existsPartidoEquipos) {
+			throw new NotFoundException(PartidoExceptionCode.EQUIPOS_NO_DEFINIDOS_PARA_PARTIDO);
+		}
+
+		//check equipos playing are the same as the ones in the DTO
+		List<Integer> equipoIds = this.juegoRepository.getPartidoEquipoIds(id);
+		if (!equipoIds.contains(partidoResultDTO.getEquipo1().getId()) ||
+				!equipoIds.contains(partidoResultDTO.getEquipo2().getId())) {
+			throw new ConflictException(PartidoExceptionCode.EQUIPOS_DEFINIDOS_NO_COINCIDEN);
+		}
+
+		// update results
+		this.juegoRepository.updateResult(id,
+				partidoResultDTO.getEquipo1().getId(),
+				partidoResultDTO.getEquipo1().getGoles());
+		this.juegoRepository.updateResult(id,
+				partidoResultDTO.getEquipo2().getId(),
+				partidoResultDTO.getEquipo2().getGoles());
 	}
 
 	/**
