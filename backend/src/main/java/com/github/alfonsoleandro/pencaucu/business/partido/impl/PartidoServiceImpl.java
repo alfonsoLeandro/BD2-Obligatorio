@@ -67,10 +67,12 @@ public class PartidoServiceImpl implements PartidoService {
 		boolean exists = this.juegoRepository.existsByPartidoId(id) == 1;
 		if (exists) {
 			this.juegoRepository.deleteEquiposForPartido(id);
+			this.prediccionRepository.deletePrediccionesForPartido(id);
 		}
 
 		// Set equipos for partido
 		this.juegoRepository.insertEquiposForPartido(id, idEquipo1, idEquipo2);
+		//TODO: Send notification to all users that have a prediction for this partido, EXIT TRANSACTION
 	}
 
 	@Override
