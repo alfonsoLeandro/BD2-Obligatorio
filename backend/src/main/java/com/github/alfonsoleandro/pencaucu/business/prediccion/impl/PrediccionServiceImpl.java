@@ -37,15 +37,7 @@ public class PrediccionServiceImpl implements PrediccionService {
     @Transactional
     @Override
     public void setPrediccion(int idPartido, PartidoPrediccionDTO partidoPrediccionDTO) {
-        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Optional<Alumno> alumnoOptional = this.alumnoRepository.findByUsuarioId(usuario.getId());
-
-        if (alumnoOptional.isEmpty()) {
-            throw new ConflictException(PrediccionExceptionCode.USUARIO_NO_ES_ALUMNO);
-        }
-        int idAlumno = alumnoOptional.get().getId();
-
-        validatePartido(idPartido);
+        int idAlumno = validateAlumnoAndPartidoForPrediccion(idPartido);
         validateEquipos(partidoPrediccionDTO.getEquipo1().getId(),
                 partidoPrediccionDTO.getEquipo2().getId());
 
@@ -75,6 +67,31 @@ public class PrediccionServiceImpl implements PrediccionService {
                 partidoPrediccionDTO.getEquipo2().getPrediccion());
     }
 
+    @Transactional
+    @Override
+    public void deletePredicciones(int idPartido) {
+        int idAlumno = validateAlumnoAndPartidoForPrediccion(idPartido);
+
+        this.prediccionRepository.deletePrediccionesForPartidoAndUsuario(idPartido, idAlumno);
+    }
+
+    /**
+     * Validates a user is allowed to add a Prediccion, and a Partido calling {@link #validatePartido(int)}.
+     * @param idPartido The id of the Partido.
+     * @return The id of the Alumno.
+     */
+    private int validateAlumnoAndPartidoForPrediccion(int idPartido) {
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<Alumno> alumnoOptional = this.alumnoRepository.findByUsuarioId(usuario.getId());
+
+        if (alumnoOptional.isEmpty()) {
+            throw new ConflictException(PrediccionExceptionCode.USUARIO_NO_ES_ALUMNO);
+        }
+
+        validatePartido(idPartido);
+        return alumnoOptional.get().getId();
+    }
+
     /**
      * Validates a Partido with the given ID exists.
      *
@@ -86,7 +103,7 @@ public class PrediccionServiceImpl implements PrediccionService {
             throw new NotFoundException(PartidoExceptionCode.PARTIDO_NO_ENCONTRADO);
         }
 
-        // Predictions can be made up to an hour before the game starts
+        // Predictions can be modified up to an hour before the game starts
         Timestamp now = new Timestamp(System.currentTimeMillis() + (1000 * 60 * 60));
         Timestamp partidoFecha = partidoOptional.get().getFecha();
         if (now.after(partidoFecha)) {

@@ -18,9 +18,14 @@ public class PrediccionController {
     private final PrediccionService prediccionService;
 
     @PutMapping("/partido/{idPartido}")
-    public void setPartidoEquipos(@PathVariable int idPartido,
+    public void setPrediccion(@PathVariable int idPartido,
                                   @RequestBody @Valid PartidoPrediccionDTO partidoPrediccionDTO) {
         this.prediccionService.setPrediccion(idPartido, partidoPrediccionDTO);
+    }
+
+    @DeleteMapping("/partido/{idPartido}")
+    public void deletePredicciones(@PathVariable int idPartido) {
+        this.prediccionService.deletePredicciones(idPartido);
     }
 
 }

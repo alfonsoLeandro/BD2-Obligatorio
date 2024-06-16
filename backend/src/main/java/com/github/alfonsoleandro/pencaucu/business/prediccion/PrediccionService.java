@@ -10,4 +10,5 @@ public interface PrediccionService {
 
     void setPrediccion(int idPartido, PartidoPrediccionDTO partidoPrediccionDTO);
 
+    void deletePredicciones(int idPartido);
 }
