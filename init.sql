@@ -1,3 +1,5 @@
+SET @@time_zone = '-03:00';
+
 CREATE TABLE IF NOT EXISTS usuarios
 (
     id         INT PRIMARY KEY AUTO_INCREMENT,
@@ -98,3 +100,7 @@ ALTER TABLE predicciones
 
 CREATE UNIQUE INDEX juegos_id_equipo_id_partido_uindex
     on juegos (id_equipo, id_partido);
+
+ALTER TABLE predicciones
+    ADD CONSTRAINT predicciones_unique
+        unique (id_partido, id_equipo, id_alumno);
