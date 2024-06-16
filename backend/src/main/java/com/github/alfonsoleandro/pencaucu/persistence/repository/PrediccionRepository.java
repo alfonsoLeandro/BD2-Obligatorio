@@ -2,6 +2,7 @@ package com.github.alfonsoleandro.pencaucu.persistence.repository;
 
 import com.github.alfonsoleandro.pencaucu.persistence.entity.Prediccion;
 import com.github.alfonsoleandro.pencaucu.persistence.view.AlumnosPrediccionesView;
+import com.github.alfonsoleandro.pencaucu.persistence.view.EquipoPrediccionPercentageView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,21 +22,38 @@ public interface PrediccionRepository extends JpaRepository<Prediccion, Integer>
                                       LEFT JOIN predicciones p2 ON p2.id_equipo = :idEquipo2
                                  AND p2.id_partido = p.id
                                  AND p2.id_alumno = p1.id_alumno
+                                      JOIN alumnos a ON a.id = p1.id_alumno
+                                      JOIN usuarios u ON u.id = a.id_usuario AND u.role = 0
                              WHERE p.id = :idPartido),
                  equipo1_wins AS (SELECT COUNT(*) AS favorable_predicciones
-                         FROM partidos p
-                                  LEFT JOIN predicciones p1 ON p1.id_equipo = :idEquipo1
-                             AND p1.id_partido = p.id
-                                  LEFT JOIN predicciones p2 ON p2.id_equipo = :idEquipo2
-                             AND p2.id_partido = p.id
-                             AND p2.id_alumno = p1.id_alumno
-                         WHERE p.id = :idPartido
-                           AND p1.goles > p2.goles)
-            SELECT equipo1_wins.favorable_predicciones / totales.favorable_predicciones
+                                  FROM partidos p
+                                           LEFT JOIN predicciones p1 ON p1.id_equipo = :idEquipo1
+                                      AND p1.id_partido = p.id
+                                           LEFT JOIN predicciones p2 ON p2.id_equipo = :idEquipo2
+                                      AND p2.id_partido = p.id
+                                      AND p2.id_alumno = p1.id_alumno
+                                           JOIN alumnos a ON a.id = p1.id_alumno
+                                           JOIN usuarios u ON u.id = a.id_usuario AND u.role = 0
+                                  WHERE p.id = :idPartido
+                                    AND p1.goles > p2.goles),
+                 equipo2_wins AS (SELECT COUNT(*) AS favorable_predicciones
+                                  FROM partidos p
+                                           LEFT JOIN predicciones p1 ON p1.id_equipo = :idEquipo1
+                                      AND p1.id_partido = p.id
+                                           LEFT JOIN predicciones p2 ON p2.id_equipo = :idEquipo2
+                                      AND p2.id_partido = p.id
+                                      AND p2.id_alumno = p1.id_alumno
+                                           JOIN alumnos a ON a.id = p1.id_alumno
+                                           JOIN usuarios u ON u.id = a.id_usuario AND u.role = 0
+                                  WHERE p.id = :idPartido
+                                    AND p1.goles < p2.goles)
+            SELECT equipo1_wins.favorable_predicciones / (totales.favorable_predicciones) as percentageEquipo1,
+                   equipo2_wins.favorable_predicciones / (totales.favorable_predicciones) as PercentageEquipo2
             FROM equipo1_wins,
-                 totales;
+                 totales,
+                 equipo2_wins;
             """, nativeQuery = true)
-    Optional<Double> getEquipoPrediccionPercentage(int idPartido, int idEquipo1, int idEquipo2);
+    Optional<EquipoPrediccionPercentageView> getEquipoPrediccionPercentage(int idPartido, int idEquipo1, int idEquipo2);
 
     @Query(value = """
             SELECT a.id         AS idAlumno,

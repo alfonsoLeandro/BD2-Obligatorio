@@ -15,6 +15,7 @@ import com.github.alfonsoleandro.pencaucu.persistence.repository.JuegoRepository
 import com.github.alfonsoleandro.pencaucu.persistence.repository.PartidoRepository;
 import com.github.alfonsoleandro.pencaucu.persistence.repository.PrediccionRepository;
 import com.github.alfonsoleandro.pencaucu.persistence.view.AlumnosPrediccionesView;
+import com.github.alfonsoleandro.pencaucu.persistence.view.EquipoPrediccionPercentageView;
 import com.github.alfonsoleandro.pencaucu.persistence.view.PartidoSearchView;
 import com.github.alfonsoleandro.pencaucu.rest.exception.ConflictException;
 import com.github.alfonsoleandro.pencaucu.rest.exception.NotFoundException;
@@ -88,14 +89,14 @@ public class PartidoServiceImpl implements PartidoService {
 		PartidoDetailsDTO partidoDetailsDTO = this.partidoMapper.viewToDetailsDTO(partidoData);
 
 		// Get prediccion percentage
-		Optional<Double> percentageOptional = this.prediccionRepository.getEquipoPrediccionPercentage(id,
+		Optional<EquipoPrediccionPercentageView> percentageOptional = this.prediccionRepository.getEquipoPrediccionPercentage(id,
 				partidoData.getIdEquipo1(),
 				partidoData.getIdEquipo2());
 
 		if (percentageOptional.isPresent()) {
-			Double eq2Percentage = 1 - percentageOptional.get();
-			partidoDetailsDTO.getEquipo1().setPorcentaje(percentageOptional.get());
-			partidoDetailsDTO.getEquipo2().setPorcentaje(eq2Percentage);
+			EquipoPrediccionPercentageView percentage = percentageOptional.get();
+			partidoDetailsDTO.getEquipo1().setPorcentaje(percentage.getPercentageEquipo1());
+			partidoDetailsDTO.getEquipo2().setPorcentaje(percentage.getPercentageEquipo2());
 		}
 
 		// Get predicciones
