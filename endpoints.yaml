@@ -141,6 +141,10 @@ endpoints:
                   }
                 }
 
+        DELETE "/partido/:idPartido":
+          -
+
+
     Usuario ("/api/v1/usuarios"):
         GET "/":
             params:
