@@ -34,7 +34,7 @@ public class PartidoAdminController {
         this.partidoService.setPartidoEquipos(id, idEquipo1, idEquipo2);
     }
 
-    @PostMapping("/resultado/{id}")
+    @PostMapping("/{id}/resultado")
     public void setPartidoEquipos(@PathVariable int id,
                                   @RequestBody @Valid PartidoResultDTO partidoResultDTO) {
         this.partidoService.setPartidoResult(id, partidoResultDTO);
