@@ -210,7 +210,7 @@ endpoints:
                 newPassword: string
 
     Usuario Admin ("/api/v1/admin/usuarios"):
-        PUT "/modifyPassword/:id":
+        PUT "/:id/modifyPassword":
             params:
                 newPassword: string
 
