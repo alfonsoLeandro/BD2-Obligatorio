@@ -128,42 +128,7 @@ endpoints:
                 }
 
     Prediccion ("/api/v1/predicciones"):
-        PUT "/partido/:idPartido":
-            request:
-                {
-                  equipo1: {
-                      id: number,
-                      goles: number
-                  },
-                  equipo2: {
-                      id: number,
-                      goles: number
-                  }
-                }
-
-        DELETE "/partido/:idPartido":
-          -
-
-
-    Usuario ("/api/v1/usuarios"):
-        GET "/":
-            params:
-                busqueda: string
-                id_carrera: number
-            response:
-                [
-                    {
-                        id: number,
-                        nombre: string,
-                        carrera: {
-                            id: number,
-                            nombre: string
-                        },
-                        puntaje: number
-                    }
-                ]
-
-        GET "/:id":
+        GET "/usuario/:id":
             response:
                 {
                     nombre: string,
@@ -183,6 +148,13 @@ endpoints:
                     ranking: number,
                     predicciones: [
                         {
+                            idPartido: number,
+                            fecha: Datetime,
+                            etapa: {
+                                id: number,
+                                nombre: string
+                            },
+                            puntaje_obtenido: number,
                             equipo1: {
                                 id: number,
                                 nombre: string,
@@ -194,16 +166,47 @@ endpoints:
                                 nombre: string,
                                 goles: number,
                                 prediccion: number
-                            },
-                            fecha: Datetime,
-                            etapa: {
-                                id: number,
-                                nombre: string
-                            },
-                            puntaje_obtenido: number
+                            }
                         }
                     ]
                 }
+
+
+        PUT "/partido/:idPartido":
+            request:
+                {
+                    equipo1: {
+                        id: number,
+                        goles: number
+                    },
+                    equipo2: {
+                        id: number,
+                        goles: number
+                    }
+                }
+
+        DELETE "/partido/:idPartido":
+            -
+
+
+
+    Usuario ("/api/v1/usuarios"):
+        GET "/":
+            params:
+                busqueda: string
+                id_carrera: number
+            response:
+                [
+                    {
+                        id: number,
+                        nombre: string,
+                        carrera: {
+                            id: number,
+                            nombre: string
+                        },
+                        puntaje: number
+                    }
+                ]
 
         PUT "/modifyPassword":
             params:
