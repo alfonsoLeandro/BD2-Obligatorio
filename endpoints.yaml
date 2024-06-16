@@ -128,7 +128,43 @@ endpoints:
                 }
 
     Prediccion ("/api/v1/predicciones"):
-        GET "/usuario/:id":
+        PUT "/partido/:idPartido":
+            request:
+                {
+                    equipo1: {
+                        id: number,
+                        goles: number
+                    },
+                    equipo2: {
+                        id: number,
+                        goles: number
+                    }
+                }
+
+        DELETE "/partido/:idPartido":
+            -
+
+
+
+    Usuario ("/api/v1/usuarios"):
+        GET "/":
+            params:
+                busqueda: string
+                id_carrera: number
+            response:
+                [
+                    {
+                        id: number,
+                        nombre: string,
+                        carrera: {
+                            id: number,
+                            nombre: string
+                        },
+                        puntaje: number
+                    }
+                ]
+
+        GET "/:id":
             response:
                 {
                     nombre: string,
@@ -170,43 +206,6 @@ endpoints:
                         }
                     ]
                 }
-
-
-        PUT "/partido/:idPartido":
-            request:
-                {
-                    equipo1: {
-                        id: number,
-                        goles: number
-                    },
-                    equipo2: {
-                        id: number,
-                        goles: number
-                    }
-                }
-
-        DELETE "/partido/:idPartido":
-            -
-
-
-
-    Usuario ("/api/v1/usuarios"):
-        GET "/":
-            params:
-                busqueda: string
-                id_carrera: number
-            response:
-                [
-                    {
-                        id: number,
-                        nombre: string,
-                        carrera: {
-                            id: number,
-                            nombre: string
-                        },
-                        puntaje: number
-                    }
-                ]
 
         PUT "/modifyPassword":
             params:
