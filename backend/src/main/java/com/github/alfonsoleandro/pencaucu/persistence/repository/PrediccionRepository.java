@@ -56,16 +56,16 @@ public interface PrediccionRepository extends JpaRepository<Prediccion, Integer>
     Optional<EquipoPrediccionPercentageView> getEquipoPrediccionPercentage(int idPartido, int idEquipo1, int idEquipo2);
 
     @Query(value = """
-            SELECT a.id         AS idAlumno,
-                   u.nombre     AS nombreAlumno,
-            	   c.id         AS idCarrera,
-            	   c.nombre     AS nombreCarrera,
-            	   eq1.id 		AS idEquipo1,
-            	   eq1.nombre 	AS nombreEquipo1,
-            	   p1.goles     AS prediccionEquipo1,
-            	   eq2.id		AS idEquipo2,
-            	   eq2.nombre	AS nombreEquipo2,
-            	   p2.goles     AS prediccionEquipo2
+            SELECT a.id                              AS idAlumno,
+                   CONCAT(u.nombre, ' ', u.apellido) AS nombreAlumno,
+            	   c.id                              AS idCarrera,
+            	   c.nombre                          AS nombreCarrera,
+            	   eq1.id 		                     AS idEquipo1,
+            	   eq1.nombre 	                     AS nombreEquipo1,
+            	   p1.goles                          AS prediccionEquipo1,
+            	   eq2.id		                     AS idEquipo2,
+            	   eq2.nombre	                     AS nombreEquipo2,
+            	   p2.goles                          AS prediccionEquipo2
             FROM predicciones p1
             	JOIN alumnos a ON a.id = p1.id_alumno
             	JOIN usuarios u ON u.id = a.id_usuario AND u.role = 0

@@ -146,11 +146,12 @@ endpoints:
 
 
 
+
     Usuario ("/api/v1/usuarios"):
         GET "/":
             params:
                 busqueda: string
-                id_carrera: number
+                idCarrera: number
             response:
                 [
                     {
