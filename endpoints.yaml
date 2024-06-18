@@ -159,6 +159,7 @@ endpoints:
             params:
                 busqueda: string
                 idCarrera: number
+                esAdmin: boolean
             response:
                 [
                     {
@@ -175,6 +176,7 @@ endpoints:
         GET "/:id":
             response:
                 {
+                    id: number,
                     nombre: string,
                     carrera: {
                         id: number,
@@ -198,7 +200,7 @@ endpoints:
                                 id: number,
                                 nombre: string
                             },
-                            puntaje_obtenido: number,
+                            puntajeObtenido: number,
                             equipo1: {
                                 id: number,
                                 nombre: string,
@@ -232,6 +234,6 @@ endpoints:
                     ci: string,
                     correo: string,
                     telefono: string,
-                    id_carrera: number,
-                    es_admin: number
+                    idCarrera: number,
+                    esAdmin: number
                 }
