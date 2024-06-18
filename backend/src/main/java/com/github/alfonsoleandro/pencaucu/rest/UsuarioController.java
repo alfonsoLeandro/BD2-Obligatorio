@@ -20,8 +20,9 @@ public class UsuarioController {
 
     @GetMapping
     public List<AlumnoDTO> findUsuarios(@RequestParam(name = "busqueda", required = false) String searchText,
-                                        @RequestParam(required = false) Integer idCarrera) {
-        return this.usuarioService.findUsuarios(searchText, idCarrera);
+                                        @RequestParam(required = false) Integer idCarrera,
+                                        @RequestParam(required = false) Boolean esAdmin) {
+        return this.usuarioService.findUsuarios(searchText, idCarrera, esAdmin);
     }
 
     @PutMapping("/modifyPassword")
