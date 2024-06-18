@@ -1,12 +1,14 @@
 package com.github.alfonsoleandro.pencaucu.persistence.repository;
 
 import com.github.alfonsoleandro.pencaucu.persistence.entity.Juego;
+import com.github.alfonsoleandro.pencaucu.persistence.view.CampeonSubcampeonView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface JuegoRepository extends JpaRepository<Juego, Integer> {
@@ -49,6 +51,16 @@ public interface JuegoRepository extends JpaRepository<Juego, Integer> {
 			  AND j.id_equipo = :idEquipo
 			""", nativeQuery = true)
     void updateResult(int idPartido, int idEquipo, int newResult);
+
+	@Query(value = """
+		SELECT j1.id_equipo AS idCampeon,
+		       j2.id_equipo AS idSubCampeon
+		FROM juegos j1
+		         JOIN partidos p ON p.id = j1.id_partido AND p.id_etapa = 5
+		         JOIN juegos j2 ON j2.id_partido = p.id AND NOT j2.id_equipo = j1.id_equipo
+		WHERE j1.goles > j2.goles
+		""", nativeQuery = true)
+	Optional<CampeonSubcampeonView> findCampeonAndSubCampeonIds();
 
 
 
