@@ -14,10 +14,10 @@ endpoints:
                   idSubcampeon: number
               }
             response:
-              {
-                  token: string,
-                  rol: string // "ADMIN" o "USUARIO"
-              }
+                {
+                    token: string,
+                    rol: string # "ADMIN" o "USUARIO"
+                }
 
         POST "/login":
             request:
@@ -30,6 +30,16 @@ endpoints:
                   token: string,
                   rol: string // "ADMIN" o "USUARIO"
               }
+
+    Carreras ("api/v1/carreras"):
+        GET "/":
+            response:
+                [
+                    {
+                        id: number,
+                        nombre: string
+                    }
+                ]
 
     Partido ("/api/v1/partidos"):
         GET "/":
@@ -143,9 +153,6 @@ endpoints:
 
         DELETE "/partido/:idPartido":
             -
-
-
-
 
     Usuario ("/api/v1/usuarios"):
         GET "/":
