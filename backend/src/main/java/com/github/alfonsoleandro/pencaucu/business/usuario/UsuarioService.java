@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UsuarioService {
 
-    List<AlumnoDTO> findUsuarios(String searchText, Integer idCarrera);
+    List<AlumnoDTO> findUsuarios(String searchText, Integer idCarrera, Boolean esAdmin);
 
     void modifyPassword(String newPassword);
 
