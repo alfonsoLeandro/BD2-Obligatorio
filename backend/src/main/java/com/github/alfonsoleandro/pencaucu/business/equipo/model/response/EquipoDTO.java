@@ -9,8 +9,10 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class EquipoPrediccionDTO extends EquipoDTO {
+public class EquipoDTO {
 
-    private Integer prediccion;
+	private int id;
+
+	private String nombre;
 
 }
