@@ -6,13 +6,17 @@ package com.github.alfonsoleandro.pencaucu.persistence.view;
  */
 public interface AlumnoPuntajeView {
 
-    Integer getId();
+    Integer getIdUsuario();
 
     String getNombre();
 
     Integer getIdCarrera();
 
     String getNombreCarrera();
+
+    Integer getIdCampeon();
+
+    Integer getIdSubcampeon();
 
     Integer getPrediccionEquipo1();
 
