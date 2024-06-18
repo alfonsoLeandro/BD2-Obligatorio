@@ -22,4 +22,5 @@ public class AlumnoPrediccionesDTO {
     private EquipoPrediccionDTO equipo1;
 
     private EquipoPrediccionDTO equipo2;
+
 }
