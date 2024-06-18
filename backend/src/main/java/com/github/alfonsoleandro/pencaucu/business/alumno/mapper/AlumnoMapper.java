@@ -1,6 +1,8 @@
 package com.github.alfonsoleandro.pencaucu.business.alumno.mapper;
 
+import com.github.alfonsoleandro.pencaucu.business.alumno.model.response.AlumnoDTO;
 import com.github.alfonsoleandro.pencaucu.business.alumno.model.response.AlumnoPrediccionesDTO;
+import com.github.alfonsoleandro.pencaucu.persistence.view.AlumnoPuntajeView;
 import com.github.alfonsoleandro.pencaucu.persistence.view.AlumnosPrediccionesView;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,8 +14,6 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface AlumnoMapper {
 
-    @Mapping(source = "idAlumno", target = "idAlumno")
-    @Mapping(source = "nombreAlumno", target = "nombreAlumno")
     @Mapping(source = "idCarrera", target = "carrera.id")
     @Mapping(source = "nombreCarrera", target = "carrera.nombre")
     @Mapping(source = "idEquipo1", target = "equipo1.id")
@@ -23,5 +23,11 @@ public interface AlumnoMapper {
     @Mapping(source = "nombreEquipo2", target = "equipo2.nombre")
     @Mapping(source = "prediccionEquipo2", target = "equipo2.prediccion")
     AlumnoPrediccionesDTO viewToPrediccionesDTO(AlumnosPrediccionesView view);
+
+    @Mapping(source = "idUsuario", target = "id")
+    @Mapping(source = "idCarrera", target = "carrera.id")
+    @Mapping(source = "nombreCarrera", target = "carrera.nombre")
+    @Mapping(target = "puntaje", ignore = true)
+    AlumnoDTO puntajeViewToDTO(AlumnoPuntajeView view);
 
 }
