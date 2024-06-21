@@ -34,7 +34,7 @@ public class RegisterDTO {
     private String password;
 
     @NotNull(message = "PHONE_NULO")
-    @Size(min = 8, message = "PHONE_INVALIDO")
+    @Size(min = 8, max = 11, message = "PHONE_INVALIDO")
     private String telefono;
 
     @NotNull(message = "ID_CARRERA_NULO")
