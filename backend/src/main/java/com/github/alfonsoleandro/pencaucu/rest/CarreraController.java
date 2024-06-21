@@ -14,7 +14,7 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/carreras")
+@RequestMapping("/api/v1/public/carreras")
 public class CarreraController {
 
     private final CarreraService carreraService;
