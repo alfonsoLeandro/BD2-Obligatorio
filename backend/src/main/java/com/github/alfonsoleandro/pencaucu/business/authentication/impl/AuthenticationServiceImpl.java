@@ -73,6 +73,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.eleccionRepository.save(eleccionAlumno);
 
         AuthenticationDTO authenticationDTO = new AuthenticationDTO();
+        authenticationDTO.setId(usuario.getId());
         authenticationDTO.setToken(this.jwtService.generateToken(usuario));
         authenticationDTO.setRol(Role.ALUMNO);
 
@@ -89,6 +90,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .orElseThrow(() -> new NotFoundException(AuthExceptionCode.USUARIO_NO_ENCONTRADO));
 
         AuthenticationDTO authenticationDTO = new AuthenticationDTO();
+        authenticationDTO.setId(usuario.getId());
         authenticationDTO.setToken(this.jwtService.generateToken(usuario));
         authenticationDTO.setRol(usuario.getRole());
 

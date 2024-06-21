@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 public class AuthenticationDTO {
 
+    private Integer id;
     private String token;
     private Role rol;
 
