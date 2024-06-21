@@ -7,6 +7,8 @@ import { MatInput } from '@angular/material/input';
 import { PartidoCardComponent } from '../../components/partido-card/partido-card.component';
 import { PartidoService } from '../../services/partido.service';
 import { PartidoApiDto } from '../../models/partido-api-dto';
+import Swal from 'sweetalert2';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-home',
@@ -26,17 +28,21 @@ export class HomeComponent {
 
     partidos: PartidoApiDto[] =[];
 
-    constructor(private partidoService: PartidoService) {
+    constructor(private partidoService: PartidoService,
+                private alertService: AlertService) {
         this.getPartidos();
     }
 
     getPartidos() {
+        this.alertService.showLoading();
         this.partidoService.getPartidos().subscribe({
             next: (partidos) => {
                 this.partidos = partidos;
+                Swal.close();
             },
             error: (error) => {
                 console.log(error);
+                Swal.close();
             }
         });
     }

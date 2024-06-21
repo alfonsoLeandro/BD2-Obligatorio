@@ -6,26 +6,30 @@
     justify-content: space-between;
 }
 
+.country-flag {
+    border-radius: 12%;
+}
+
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  font-family: Montserrat, "Helvetica Neue", sans-serif;
+    margin: 0;
+    font-family: Montserrat, "Helvetica Neue", sans-serif;
 }
 
 $custom-primary-palette: (
-  50: #1c2433,
-  100: #1c2433,
-  500: #1c2433,
-  700: #1c2433,
-  contrast: (
-    50: #ffffff,
-    100: #ffffff,
-    500: #ffffff,
-    700: #ffffff,
-  )
+    50: #1c2433,
+    100: #1c2433,
+    500: #1c2433,
+    700: #1c2433,
+    contrast: (
+        50: #ffffff,
+        100: #ffffff,
+        500: #ffffff,
+        700: #ffffff,
+    )
 );
 
 $custom-typography: mat.define-typography-config($font-family: "Montserrat, Helvetica Neue, sans-serif");
@@ -38,28 +42,28 @@ $dark-theme-background: mat.define-palette(mat.$grey-palette, 900);
 $dark-theme-foreground: mat.define-palette(mat.$grey-palette, 100);
 
 $custom-theme: mat.define-light-theme(
-    (
-      color: (
-        primary: $custom-primary,
-        accent: $custom-accent,
-        warn: $custom-warn,
-      ),
-      typography: $custom-typography
-    )
+        (
+            color: (
+                primary: $custom-primary,
+                accent: $custom-accent,
+                warn: $custom-warn,
+            ),
+            typography: $custom-typography
+        )
 );
 
 $dark-theme: mat.define-dark-theme((
-  color: (
-    primary: $custom-primary,
-    accent: $custom-accent,
-    warn: $custom-warn,
-  ),
-  background: $dark-theme-background,
-  foreground: $dark-theme-foreground,
+    color: (
+        primary: $custom-primary,
+        accent: $custom-accent,
+        warn: $custom-warn,
+    ),
+    background: $dark-theme-background,
+    foreground: $dark-theme-foreground,
 ));
 
 @include mat.all-component-themes($custom-theme);
 
 @mixin dark-theme {
-  @include mat.all-component-themes($dark-theme);
+    @include mat.all-component-themes($dark-theme);
 }

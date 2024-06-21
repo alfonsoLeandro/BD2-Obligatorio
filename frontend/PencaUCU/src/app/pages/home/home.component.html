@@ -11,7 +11,7 @@
 
     <div class="search-box">
         <mat-form-field>
-            <mat-icon matPrefix style="">search</mat-icon>
+            <mat-icon matPrefix>search</mat-icon>
             <input matInput placeholder="Buscar partidos">
         </mat-form-field>
         <button mat-icon-button>
@@ -22,7 +22,7 @@
     <section class="partidos-list">
         @if (partidos.length > 0) {
             @for (partido of partidos; track partido.id) {
-                <app-partido-card></app-partido-card>
+                <app-partido-card [partido]="partido"></app-partido-card>
             }
         } @else {
             <span>No hay partidos disponibles</span>

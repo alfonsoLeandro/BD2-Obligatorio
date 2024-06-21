@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="top">
+        <section class="left">
+            <img [src]="equipo1FlagPath" alt="Bandera equipo 1" class="country-flag">
+            <span>{{ partido.equipo1.nombre }}</span>
+        </section>
+        <section class="middle">
+            @if (partido.equipo1.goles != null && partido.equipo2.goles != null) {
+                <span class="resultado">{{ partido.equipo1.goles }} - {{ partido.equipo2.goles }}</span>
+            } @else {
+                <span class="no-determinado">ND</span>
+            }
+            @if (partido.equipo1.prediccion != null && partido.equipo2.prediccion != null) {
+                <span>{{ partido.equipo1.prediccion }} - {{ partido.equipo2.prediccion }}</span>
+            } @else {
+                <span>-</span>
+            }
+        </section>
+        <section class="right">
+            <img [src]="equipo2FlagPath" alt="Bandera equipo 2" class="country-flag">
+            <span>{{ partido.equipo2.nombre }}</span>
+        </section>
+    </div>
+    <div class="bottom">
+        <span>{{ partido.fecha | date:'EEEE dd MMMM HH:mm' }}</span>
+        <span>{{ partido.etapa.nombre }}</span>
+    </div>
+</div>
