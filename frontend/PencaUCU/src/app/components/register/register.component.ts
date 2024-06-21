@@ -19,7 +19,6 @@ import { CarreraService } from '../../services/carrera.service';
 import { EquipoService } from '../../services/equipo.service';
 import {HttpClientModule} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
 import {AuthApiDto} from "../../models/auth-api-dto";
 import {AuthService} from "../../services/auth.service";
 

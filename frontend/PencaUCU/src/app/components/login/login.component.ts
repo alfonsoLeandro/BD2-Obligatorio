@@ -10,7 +10,6 @@ import {AuthApiDto} from "../../models/auth-api-dto";
 import {Observable} from "rxjs";
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {MatCheckbox} from "@angular/material/checkbox";
-import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 
 
@@ -48,8 +47,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private authService: AuthService,
-    private dialog: MatDialog,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
