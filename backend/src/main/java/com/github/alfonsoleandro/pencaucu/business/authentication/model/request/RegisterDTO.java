@@ -30,7 +30,7 @@ public class RegisterDTO {
     private String email;
 
     @NotNull(message = "PASSWORD_NULO")
-    @Size(min = 9, message = "PASSWORD_DEMASIADO_CORTO")
+    @Size(min = 8, message = "PASSWORD_DEMASIADO_CORTO")
     private String password;
 
     @NotNull(message = "PHONE_NULO")
