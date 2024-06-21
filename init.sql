@@ -1,4 +1,5 @@
 SET @@time_zone = '-03:00';
+SET NAMES 'utf8';
 
 CREATE TABLE IF NOT EXISTS usuarios
 (
