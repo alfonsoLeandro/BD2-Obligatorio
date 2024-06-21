@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthApiDto } from '../../models/auth-api-dto';
 import { AuthService } from '../../services/auth.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
     selector: 'app-register',
@@ -67,21 +68,21 @@ export class RegisterComponent implements OnInit {
         password: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
         confirmPassword: new FormControl<string>('', [Validators.required]),
         telefono: new FormControl<string>('', [Validators.required]),
-        Carrera: new FormControl<number | null>(null, [Validators.required]),
-        Campeon: new FormControl<number | null>(null, [Validators.required]),
-        Subcampeon: new FormControl<number | null>(null, [Validators.required]),
+        carrera: new FormControl<number | null>(null, [Validators.required]),
+        campeon: new FormControl<number | null>(null, [Validators.required]),
+        subcampeon: new FormControl<number | null>(null, [Validators.required]),
     }, { validators: this.passwordMatchValidator });
 
 
     constructor(
         private carreraService: CarreraService,
         private equipoService: EquipoService,
-        private authService: AuthService
+        private authService: AuthService,
+        private alertService: AlertService
     ) {
     }
 
     ngOnInit(): void {
-
         this.carreraService.getCarreras().subscribe((carreras) => {
             this.carreras = carreras;
         });
@@ -89,11 +90,10 @@ export class RegisterComponent implements OnInit {
         this.equipoService.getEquipos().subscribe((equipos) => {
             this.equipos = equipos;
         });
+
     }
 
     register() {
-        alert(this.registerFormControl.get('email')?.value);
-
         this.authService.register(
             this.registerFormControl.get('name')!.value,
             this.registerFormControl.get('surname')!.value,
@@ -101,9 +101,9 @@ export class RegisterComponent implements OnInit {
             this.registerFormControl.get('email')!.value,
             this.registerFormControl.get('password')!.value,
             this.registerFormControl.get('telefono')!.value,
-            this.registerFormControl.get('Carrera')!.value,
-            this.registerFormControl.get('Campeon')!.value,
-            this.registerFormControl.get('Subcampeon')!.value
+            this.registerFormControl.get('carrera')!.value,
+            this.registerFormControl.get('campeon')!.value,
+            this.registerFormControl.get('subcampeon')!.value
         ).subscribe({
             next: (authData: AuthApiDto) => {
                 console.log(authData);
@@ -113,6 +113,9 @@ export class RegisterComponent implements OnInit {
                 this.router.navigate(['/home']);
             },
             error: (error) => {
+                if(error.error.message) {
+                    this.alertService.showError(error.error.message);
+                }
                 console.log(error);
             }
         });
