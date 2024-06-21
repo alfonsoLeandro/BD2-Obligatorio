@@ -1,4 +1,4 @@
-package com.github.alfonsoleandro.pencaucu.rest;
+package com.github.alfonsoleandro.pencaucu.rest.admin;
 
 import com.github.alfonsoleandro.pencaucu.business.partido.PartidoService;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.request.PartidoResultDTO;

@@ -1,4 +1,4 @@
-package com.github.alfonsoleandro.pencaucu.rest;
+package com.github.alfonsoleandro.pencaucu.rest.publicapi;
 
 import com.github.alfonsoleandro.pencaucu.business.equipo.EquipoService;
 import com.github.alfonsoleandro.pencaucu.business.equipo.model.response.EquipoDTO;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/public/equipos")
-public class EquipoController {
+public class EquipoPublicController {
 
     private final EquipoService equipoService;
 

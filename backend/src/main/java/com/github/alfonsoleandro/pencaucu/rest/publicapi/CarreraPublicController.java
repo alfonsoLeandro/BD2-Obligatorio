@@ -1,11 +1,12 @@
-package com.github.alfonsoleandro.pencaucu.rest;
+package com.github.alfonsoleandro.pencaucu.rest.publicapi;
 
 import com.github.alfonsoleandro.pencaucu.business.carrera.CarreraService;
 import com.github.alfonsoleandro.pencaucu.business.carrera.model.response.CarreraDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/public/carreras")
-public class CarreraController {
+public class CarreraPublicController {
 
     private final CarreraService carreraService;
 

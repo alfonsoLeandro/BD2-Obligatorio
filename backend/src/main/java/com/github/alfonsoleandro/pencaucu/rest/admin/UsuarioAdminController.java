@@ -1,4 +1,4 @@
-package com.github.alfonsoleandro.pencaucu.rest;
+package com.github.alfonsoleandro.pencaucu.rest.admin;
 
 import com.github.alfonsoleandro.pencaucu.business.usuario.UsuarioService;
 import lombok.RequiredArgsConstructor;
