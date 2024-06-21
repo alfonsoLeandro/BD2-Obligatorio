@@ -1,0 +1,39 @@
+.container {
+    height: 100%;
+}
+.search-box {
+    padding: 15px 15px 0 15px;
+    width: calc(100% - 30px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+    mat-icon {
+        flex-grow: 1;
+    }
+    mat-form-field {
+        padding-top: 15px;
+        flex-grow: 2;
+    }
+}
+
+.partidos-list {
+    z-index: 0;
+    max-height: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 15px;
+    overflow-y: auto;
+}
+
+.bottom-navbar {
+    z-index: 1;
+    position: fixed;
+    bottom: 0;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}

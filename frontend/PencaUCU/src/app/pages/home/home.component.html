@@ -1,0 +1,44 @@
+<div class="container">
+    <mat-toolbar color="primary" class="toolbar">
+        <button mat-icon-button>
+            <mat-icon>add</mat-icon>
+        </button>
+        <span>Partidos</span>
+        <button mat-icon-button>
+            <mat-icon>logout</mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <div class="search-box">
+        <mat-form-field>
+            <mat-icon matPrefix style="">search</mat-icon>
+            <input matInput placeholder="Buscar partidos">
+        </mat-form-field>
+        <button mat-icon-button>
+            <mat-icon>tune</mat-icon>
+        </button>
+    </div>
+
+    <section class="partidos-list">
+        @if (partidos.length > 0) {
+            @for (partido of partidos; track partido.id) {
+                <app-partido-card></app-partido-card>
+            }
+        } @else {
+            <span>No hay partidos disponibles</span>
+        }
+    </section>
+
+    <mat-toolbar class="bottom-navbar">
+        <button mat-icon-button>
+            <mat-icon>person</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon>sports_soccer</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon>groups</mat-icon>
+        </button>
+    </mat-toolbar>
+
+</div>
