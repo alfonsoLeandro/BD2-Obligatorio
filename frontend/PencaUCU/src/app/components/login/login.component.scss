@@ -1,0 +1,49 @@
+@use '../../../styles' as dark-theme;
+
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1c2433;
+}
+
+.logo {
+  margin-bottom: 30px;
+  margin-top: 94px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 0;
+}
+
+mat-checkbox {
+  margin-top: 0;
+}
+
+.forgot-password-link {
+  margin-top: 10px;
+  color: #3f51b5;
+  cursor: pointer;
+  text-align: right;
+  display: block;
+  text-decoration: underline;
+}
+
+.register{
+  margin-top: 10px;
+}
+
+.dark-theme {
+  @include dark-theme.dark-theme;
+}

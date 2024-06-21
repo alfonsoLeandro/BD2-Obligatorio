@@ -1,0 +1,144 @@
+<div class="register-container dark-theme">
+
+  <div class="header">
+    <mat-icon class="back" (click)=back() >chevron_left</mat-icon>
+    <h1 class="title">REGISTRO</h1>
+  </div>
+  <form [formGroup]="registerFormControl">
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput formControlName="name">
+        <mat-error *ngIf="registerFormControl.get('name')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input type="text" matInput formControlName="surname">
+        <mat-error *ngIf="registerFormControl.get('surname')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>C. I.</mat-label>
+        <input type="text" matInput formControlName="ci">
+        <mat-error *ngIf="registerFormControl.get('ci')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email">
+        <mat-error *ngIf="registerFormControl.get('email')?.hasError('email') && !registerFormControl.get('email')?.hasError('required')">
+          Correo electrónico <strong>no valido</strong>
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.get('email')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password">
+        <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon [style.color]="'grey'">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerFormControl.get('password')?.hasError('minlength') && !registerFormControl.get('password')?.hasError('required')">
+          <strong>8 caracteres mínimo</strong>
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.get('password')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Confirmar contraseña</mat-label>
+        <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="confirmPassword">
+        <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon [style.color]="'grey'">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerFormControl.errors?.['passwordMatch'] && !registerFormControl.get('confirmPassword')?.hasError('required')">
+          Las contraseñas <strong>no coinciden</strong>
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.get('confirmPassword')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>Telefono</mat-label>
+        <input type="text" matInput formControlName="telefono">
+        <mat-error *ngIf="registerFormControl.get('telefono')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>Carrera</mat-label>
+        <mat-select formControlName="carrera">
+          <mat-option *ngFor="let carrera of carreras" [value]="carrera.id">
+            {{ carrera.nombre }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="registerFormControl.get('idCarrera')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>Campeon</mat-label>
+        <mat-select formControlName="campeon">
+          <mat-option *ngFor="let campeon of equipos" [value]="campeon.id">
+            {{ campeon.nombre }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="registerFormControl.get('campeon')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>Subcampeon</mat-label>
+        <mat-select formControlName="subcampeon">
+          <mat-option *ngFor="let campeon of equipos" [value]="campeon.id">
+            {{ campeon.nombre }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="registerFormControl.get('campeon')?.hasError('required')">
+          Campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button
+            class="register"
+            color="accent"
+            (click)="register()"
+            [disabled]="!registerFormControl.valid"
+            type="submit">Registrar
+    </button>
+  </form>
+
+</div>

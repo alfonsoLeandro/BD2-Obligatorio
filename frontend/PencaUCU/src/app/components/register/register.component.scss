@@ -1,0 +1,50 @@
+@use '../../../styles' as dark-theme;
+
+.dark-theme {
+  @include dark-theme.dark-theme;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1c2433;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.header{
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+}
+
+.back {
+  display: flex;
+  color: #ffffff;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.title {
+  color: #ffffff;
+  margin: auto;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 0;
+}

@@ -28,6 +28,10 @@ $custom-primary: mat.define-palette($custom-primary-palette);
 $custom-accent: mat.define-palette(mat.$orange-palette);
 $custom-warn: mat.define-palette(mat.$red-palette);
 
+
+$dark-theme-background: mat.define-palette(mat.$grey-palette, 900);
+$dark-theme-foreground: mat.define-palette(mat.$grey-palette, 100);
+
 $custom-theme: mat.define-light-theme(
     (
       color: (
@@ -39,4 +43,18 @@ $custom-theme: mat.define-light-theme(
     )
 );
 
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  ),
+  background: $dark-theme-background,
+  foreground: $dark-theme-foreground,
+));
+
 @include mat.all-component-themes($custom-theme);
+
+@mixin dark-theme {
+  @include mat.all-component-themes($dark-theme);
+}
