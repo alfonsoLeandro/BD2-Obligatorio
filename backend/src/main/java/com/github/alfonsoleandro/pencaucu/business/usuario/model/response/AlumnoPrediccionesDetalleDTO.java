@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @Setter
 public class AlumnoPrediccionesDetalleDTO {
 
-	private int idPartido;
+	private Integer idPartido;
 
 	private Timestamp fecha;
 

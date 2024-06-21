@@ -152,7 +152,7 @@ endpoints:
                 }
 
         DELETE "/partido/:idPartido":
-            -
+            response: {}
 
     Usuario ("/api/v1/usuarios"):
         GET "/":

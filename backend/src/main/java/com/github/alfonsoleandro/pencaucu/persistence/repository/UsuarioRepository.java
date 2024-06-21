@@ -28,4 +28,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             WHERE id = :id
             """, nativeQuery = true)
     void modifyPassword(Integer id, String newPassword);
+
 }

@@ -1,6 +1,7 @@
 package com.github.alfonsoleandro.pencaucu.business.usuario;
 
 import com.github.alfonsoleandro.pencaucu.business.alumno.model.response.AlumnoDTO;
+import com.github.alfonsoleandro.pencaucu.business.usuario.model.response.UsuarioDetalleDTO;
 
 import java.util.List;
 
@@ -15,5 +16,7 @@ public interface UsuarioService {
     void modifyPassword(String newPassword);
 
     void modifyPassword(int id, String newPassword);
+
+    UsuarioDetalleDTO getUsuarioDetalle(Integer id);
 
 }
