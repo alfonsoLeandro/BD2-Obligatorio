@@ -1,0 +1,50 @@
+<div class="login-container dark-theme">
+
+  <img src="assets/PencaUCU logo.png" alt="Logo" class="logo" height="300" width="300">
+
+  <form [formGroup]="loginFormControl">
+    <div>
+      <mat-form-field class="opaque-form-field" color="accent" appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input type="email" matInput formControlName="email">
+        <mat-error *ngIf="loginFormControl.get('email')?.hasError('email') && !loginFormControl.get('email')?.hasError('required')">
+          Correo electrónico <strong>no valido</strong>
+        </mat-error>
+        <mat-error *ngIf="loginFormControl.get('email')?.hasError('required')">
+          Correo electrónico <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password">
+        <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon [style.color]="'grey'">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <section class="saveLogin">
+      <mat-checkbox formControlName="remember" (change)="rememberPassword = $event.checked">
+        Recordarme</mat-checkbox>
+    </section>
+
+    <button mat-raised-button
+            (click)="login()"
+            [disabled]="!loginFormControl.valid"
+            type="submit">Ingresar
+    </button>
+
+    <a class="forgot-password-link">¿Olvidó su contraseña?</a>
+
+    <button mat-raised-button
+            class="register"
+            color="accent"
+            (click)="register()"
+            type="submit">Registrar
+    </button>
+
+  </form>
+
+</div>
