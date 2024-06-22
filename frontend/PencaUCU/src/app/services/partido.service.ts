@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PartidoApiDto } from '../models/partido-api-dto';
 
 @Injectable({
@@ -17,11 +17,22 @@ export class PartidoService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getPartidos() {
+    getPartidos(searchText?: string, jugado?: boolean, conPrediccion?: boolean) {
+        let params: HttpParams = new HttpParams();
+        if (searchText) {
+            params = params.set('busqueda', searchText);
+        }
+        if (jugado) {
+            params = params.set('jugado', jugado.toString());
+        }
+        if (conPrediccion) {
+            params = params.set('conPrediccion', conPrediccion.toString());
+        }
         return this.httpClient.get<PartidoApiDto[]>(this.urlBase,
             {
                 headers: this.httpHeaders.append('Authorization',
-                    'Bearer ' + localStorage.getItem('token'))
+                    'Bearer ' + localStorage.getItem('token')),
+                params: params
             });
     }
 

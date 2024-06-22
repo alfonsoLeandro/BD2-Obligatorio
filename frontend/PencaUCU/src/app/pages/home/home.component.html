@@ -1,20 +1,27 @@
 <div class="container">
     <mat-toolbar color="primary" class="toolbar">
-        <button mat-icon-button>
-            <mat-icon>add</mat-icon>
-        </button>
+        @if (role == Role.ADMIN) {
+            <button mat-icon-button>
+                <mat-icon>add</mat-icon>
+            </button>
+        } @else {
+            <span class="spacer"></span>
+        }
         <span>Partidos</span>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="logout()">
             <mat-icon>logout</mat-icon>
         </button>
     </mat-toolbar>
 
     <div class="search-box">
         <mat-form-field>
+            <input matInput placeholder="Buscar partidos" [(ngModel)]="searchText" (ngModelChange)="$searchSub.next()">
             <mat-icon matPrefix>search</mat-icon>
-            <input matInput placeholder="Buscar partidos">
+            @if (searchText.length > 0) {
+                <mat-icon matSuffix (click)="searchText = ''; getPartidos()">close</mat-icon>
+            }
         </mat-form-field>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="openFilters()">
             <mat-icon>tune</mat-icon>
         </button>
     </div>

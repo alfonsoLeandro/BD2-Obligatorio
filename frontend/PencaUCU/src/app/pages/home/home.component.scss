@@ -1,6 +1,7 @@
 .container {
     height: 100%;
 }
+
 .search-box {
     padding: 15px 15px 0 15px;
     width: calc(100% - 30px);
@@ -8,9 +9,11 @@
     align-items: center;
     justify-content: space-between;
     gap: 2px;
+
     mat-icon {
         flex-grow: 1;
     }
+
     mat-form-field {
         padding-top: 15px;
         flex-grow: 2;
@@ -36,4 +39,8 @@
     flex-direction: row;
     justify-content: space-around;
 
+}
+
+.spacer {
+    width: 48px;
 }

@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="title">
+        <strong>Filtrar partidos</strong>
+        <mat-icon (click)="cancel()">close</mat-icon>
+    </div>
+    <section class="inputs">
+        <mat-form-field appearance="outline">
+            <mat-label>Jugado</mat-label>
+            <mat-select [(ngModel)]="jugado">
+                <mat-option [value]="undefined">Todos</mat-option>
+                <mat-option [value]="true">Si</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Con prediccion</mat-label>
+            <mat-select [(ngModel)]="conPrediccion">
+                <mat-option [value]="undefined">Todos</mat-option>
+                <mat-option [value]="true">Si</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+
+    <section class="buttons">
+        <button mat-raised-button color="primary" (click)="accept()">Aplicar</button>
+    </section>
+
+</div>
