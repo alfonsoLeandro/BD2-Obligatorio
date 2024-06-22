@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="title">
+        <strong>Establecer equipos</strong>
+        <mat-icon (click)="cancel()">close</mat-icon>
+    </div>
+    <section class="inputs">
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha</mat-label>
+            <mat-select [(ngModel)]="partidoSeleccionado">
+                @for (fecha of availableFechas; track fecha.id) {
+                    <mat-option [value]="fecha.id">{{ fecha.fecha | date:'EEEE dd MMMM HH:mm'}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Equipo 1</mat-label>
+            <mat-select [(ngModel)]="idEquipo1">
+                @for (equipo of availableEquipos; track equipo.id) {
+                    <mat-option [value]="equipo.id">{{ equipo.nombre }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Equipo 2</mat-label>
+            <mat-select [(ngModel)]="idEquipo2">
+                @for (equipo of availableEquipos; track equipo.id) {
+                    <mat-option [value]="equipo.id">{{ equipo.nombre }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </section>
+
+    <section class="buttons">
+        <button mat-raised-button color="primary" (click)="accept()">Aplicar</button>
+    </section>
+
+</div>

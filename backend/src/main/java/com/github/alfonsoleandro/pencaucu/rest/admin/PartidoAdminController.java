@@ -2,6 +2,7 @@ package com.github.alfonsoleandro.pencaucu.rest.admin;
 
 import com.github.alfonsoleandro.pencaucu.business.partido.PartidoService;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.request.PartidoResultDTO;
+import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoFechaDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -23,7 +24,7 @@ public class PartidoAdminController {
     private final PartidoService partidoService;
 
     @GetMapping("/fechas")
-    public List<Timestamp> getAvailableFechas() {
+    public List<PartidoFechaDTO> getAvailableFechas() {
         return this.partidoService.getAvailableFechas();
     }
 

@@ -3,8 +3,8 @@ package com.github.alfonsoleandro.pencaucu.business.partido;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.request.PartidoResultDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDetailsDTO;
+import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoFechaDTO;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ public interface PartidoService {
 
     List<PartidoDTO> searchPartidos(String searchText, Boolean jugado, Boolean conPrediccion);
 
-    List<Timestamp> getAvailableFechas();
+    List<PartidoFechaDTO> getAvailableFechas();
 
     void setPartidoEquipos(int id, int idEquipo1, int idEquipo2);
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PartidoApiDto } from '../models/partido-api-dto';
+import { PartidoFechaApiDto } from '../models/partido-fecha-api-dto';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,7 @@ export class PartidoService {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': '*'
     });
-    private readonly urlBase = 'http://localhost:8080/api/v1/partidos';
+    private readonly urlBase = 'http://localhost:8080/api/v1';
 
     constructor(private httpClient: HttpClient) {
     }
@@ -28,7 +29,7 @@ export class PartidoService {
         if (conPrediccion) {
             params = params.set('conPrediccion', conPrediccion.toString());
         }
-        return this.httpClient.get<PartidoApiDto[]>(this.urlBase,
+        return this.httpClient.get<PartidoApiDto[]>(`${this.urlBase}/partidos`,
             {
                 headers: this.httpHeaders.append('Authorization',
                     'Bearer ' + localStorage.getItem('token')),
@@ -36,4 +37,23 @@ export class PartidoService {
             });
     }
 
+    getAvailableFechas() {
+        return this.httpClient.get<PartidoFechaApiDto[]>(`${this.urlBase}/admin/partidos/fechas`,
+            {
+                headers: this.httpHeaders.append('Authorization',
+                    'Bearer ' + localStorage.getItem('token'))
+            });
+    }
+
+    setPartidoEquipos(idPartido: number, idEquipo1: number, idEquipo2: number) {
+        let params: HttpParams = new HttpParams();
+        params = params.set('idEquipo1', idEquipo1);
+        params = params.set('idEquipo2', idEquipo2);
+        return this.httpClient.post<void>(`${this.urlBase}/admin/partidos/${idPartido}`, null,
+            {
+                headers: this.httpHeaders.append('Authorization',
+                    'Bearer ' + localStorage.getItem('token')),
+                params: params
+            });
+    }
 }

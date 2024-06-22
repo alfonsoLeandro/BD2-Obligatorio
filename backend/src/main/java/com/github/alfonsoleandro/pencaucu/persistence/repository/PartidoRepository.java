@@ -1,13 +1,13 @@
 package com.github.alfonsoleandro.pencaucu.persistence.repository;
 
 import com.github.alfonsoleandro.pencaucu.persistence.entity.Partido;
+import com.github.alfonsoleandro.pencaucu.persistence.view.PartidoFechaView;
 import com.github.alfonsoleandro.pencaucu.persistence.view.PartidoSearchView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,11 +61,11 @@ public interface PartidoRepository extends JpaRepository<Partido, Integer> {
     List<PartidoSearchView> searchPartidos(Integer idUsuario, String busqueda, Boolean jugado, Boolean conPrediccion);
 
     @Query(value = """
-            SELECT p.fecha
+            SELECT p.id, p.fecha
             FROM partidos p
             ORDER BY p.fecha
             """, nativeQuery = true)
-    List<Timestamp> getAvailableFechas();
+    List<PartidoFechaView> getAvailableFechas();
 
     @Query(value = """
             SELECT p.id       AS id,

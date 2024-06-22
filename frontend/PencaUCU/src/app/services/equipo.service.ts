@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EquipoApiDto } from '../models/equipo-api-dto';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,7 @@ export class EquipoService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getEquipos(): Observable<any[]> {
+    getEquipos(): Observable<EquipoApiDto[]> {
         return this.httpClient.get<any[]>(`${this.urlBase}/public/equipos`, { headers: this.httpHeaders });
     }
 

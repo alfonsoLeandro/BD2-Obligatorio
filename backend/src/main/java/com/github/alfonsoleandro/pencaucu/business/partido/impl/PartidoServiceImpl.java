@@ -9,6 +9,7 @@ import com.github.alfonsoleandro.pencaucu.business.partido.mapper.PartidoMapper;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.request.PartidoResultDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDetailsDTO;
+import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoFechaDTO;
 import com.github.alfonsoleandro.pencaucu.persistence.entity.Usuario;
 import com.github.alfonsoleandro.pencaucu.persistence.repository.EquipoRepository;
 import com.github.alfonsoleandro.pencaucu.persistence.repository.JuegoRepository;
@@ -24,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,8 +54,8 @@ public class PartidoServiceImpl implements PartidoService {
 	}
 
 	@Override
-	public List<Timestamp> getAvailableFechas() {
-		return this.partidoRepository.getAvailableFechas();
+	public List<PartidoFechaDTO> getAvailableFechas() {
+		return this.partidoRepository.getAvailableFechas().stream().map(pfv -> new PartidoFechaDTO(pfv.getId(), pfv.getFecha())).toList();
 	}
 
 	@Transactional

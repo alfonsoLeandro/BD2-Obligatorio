@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PartidoFilterDialogComponent } from '../../dialogs/partido-filter-dialog/partido-filter-dialog.component';
 import { Router } from '@angular/router';
 import { Role } from '../../models/role';
+import { PartidoEquiposDialogComponent } from '../../dialogs/partido-equipos-dialog/partido-equipos-dialog.component';
 
 @Component({
     selector: 'app-home',
@@ -91,7 +92,21 @@ export class HomeComponent {
     }
 
     addPartido() {
-        //TODO
+        this.dialog.open(PartidoEquiposDialogComponent, {
+            width: '250px'
+        }).afterClosed().subscribe((result?: {idPartido: number, idEquipo1: number, idEquipo2: number}) => {
+            if (result) {
+                this.partidoService.setPartidoEquipos(result.idPartido, result.idEquipo1, result.idEquipo2).subscribe({
+                    next: () => {
+                        this.alertService.showSuccess();
+                        this.getPartidos();
+                    },
+                    error: (error) => {
+                        this.alertService.showError(error.error?.message ?? 'Error inesperado');
+                    }
+                })
+            }
+        });
     }
 
     protected readonly Role = Role;

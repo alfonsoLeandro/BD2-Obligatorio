@@ -22,6 +22,8 @@ import { Router } from '@angular/router';
 import { AuthApiDto } from '../../models/auth-api-dto';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
+import { CarreraApiDto } from '../../models/carrera-api-dto';
+import { EquipoApiDto } from '../../models/equipo-api-dto';
 
 @Component({
     selector: 'app-register',
@@ -50,8 +52,8 @@ export class RegisterComponent implements OnInit {
 
     router = inject(Router);
     hidePassword = true;
-    carreras: any[] = [];
-    equipos: any[] = [];
+    carreras: CarreraApiDto[] = [];
+    equipos: EquipoApiDto[] = [];
 
     passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
         const password = control.get('password');
