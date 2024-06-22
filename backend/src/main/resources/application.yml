@@ -1,14 +1,17 @@
 spring:
-  application:
-    name: PencaUCU
-  datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${DB_USER_NAME}
-    password: ${DB_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    database: mysql
+    application:
+        name: PencaUCU
+    datasource:
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${DB_USER_NAME}
+        password: ${DB_PASSWORD}
+    jpa:
+        database: mysql
+    mail:
+      host: smtp-mail.outlook.com
+      port: 587
+      username: ${EMAIL}
 
 security:
-  jwt:
-    expiration-time-in-days: 10
+    jwt:
+        expiration-time-in-days: 10

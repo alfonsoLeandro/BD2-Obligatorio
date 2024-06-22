@@ -16,3 +16,28 @@ services:
       interval: 5s
       timeout: 50s
       retries: 10
+  backend:
+    build: ./backend
+    environment:
+      - USER_NAME=root
+      - DB_PASSWORD=db_pwd
+      - DB_USER_NAME=obligatorio_db
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/obligatorio_db
+      - EMAIL=obligatorio17@outlook.com
+      - EMAIL_PASSWORD=obligatorio_17
+      - REDIS_HOST=redis
+      - JWT_SECRET_PATH=/run/secrets/jwt-secret
+      - EMAIL=correoAutomaticoLA@outlook.com
+      - EMAIL_PASSWORD_PATH=/run/secrets/email-pwd
+    ports:
+      - "8080:8080"
+    volumes:
+      - /run/secrets:/run/secrets:ro
+    secrets:
+      - jwt-secret
+      - email-pwd
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
