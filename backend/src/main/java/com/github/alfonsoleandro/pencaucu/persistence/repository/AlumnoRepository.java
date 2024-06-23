@@ -11,6 +11,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author alfonsoLeandro
+ * @version 0.0.1
+ */
 @Repository
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
@@ -105,4 +109,11 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 		WHERE (p1.id IS NULL OR p2.id IS NULL OR p1.id_equipo > p2.id_equipo)
 		""", nativeQuery = true)
 	List<AlumnoPuntajeDetalleView> findAlumnoDetalles();
+
+	@Query(value = """
+			SELECT u.email
+			FROM usuarios u
+			         JOIN alumnos a ON a.id_usuario = u.id AND u.role = 0
+			""", nativeQuery = true)
+	List<String> getAlumnoEmails();
 }

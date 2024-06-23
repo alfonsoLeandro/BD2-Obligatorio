@@ -11,6 +11,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author alfonsoLeandro
+ * @version 0.0.1
+ */
 @Repository
 public interface PrediccionRepository extends JpaRepository<Prediccion, Integer> {
 

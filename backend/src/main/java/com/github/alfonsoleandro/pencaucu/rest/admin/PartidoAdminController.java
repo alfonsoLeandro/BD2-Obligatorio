@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -36,8 +35,8 @@ public class PartidoAdminController {
     }
 
     @PostMapping("/{id}/resultado")
-    public void setPartidoEquipos(@PathVariable int id,
-                                  @RequestBody @Valid PartidoResultDTO partidoResultDTO) {
+    public void setResultado(@PathVariable int id,
+                             @RequestBody @Valid PartidoResultDTO partidoResultDTO) {
         this.partidoService.setPartidoResult(id, partidoResultDTO);
     }
 

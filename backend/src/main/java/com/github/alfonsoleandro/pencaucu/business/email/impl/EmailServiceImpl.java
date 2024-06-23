@@ -3,6 +3,7 @@ package com.github.alfonsoleandro.pencaucu.business.email.impl;
 import com.github.alfonsoleandro.pencaucu.business.email.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,14 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendEmail(String to, String message) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
 
+        mailMessage.setFrom(this.fromEmail);
+        mailMessage.setTo(to);
+        mailMessage.setSubject("PencaUCU");
+        mailMessage.setText(message);
 
+        this.emailSender.send(mailMessage);
     }
 
 }

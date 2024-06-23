@@ -144,7 +144,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		// Set puntaje
 		usuarioDetalleDTO.setPuntaje(puntosByIdUsuario.get(id));
 
-		// TODO: ranking incorrecto
 		// Set ranking
 		List<Map.Entry<Integer, Integer>> entries = puntosByIdUsuario.entrySet()
 				.stream()
@@ -152,7 +151,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 				.toList();
 
 		for (Map.Entry<Integer, Integer> entry : entries) {
-			usuarioDetalleDTO.setRanking(usuarioDetalleDTO.getRanking()+1);
+			usuarioDetalleDTO.setRanking(usuarioDetalleDTO.getRanking() + 1);
 			if (entry.getKey().equals(id)) {
 				break;
 			}

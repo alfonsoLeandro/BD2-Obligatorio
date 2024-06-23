@@ -2,6 +2,7 @@ package com.github.alfonsoleandro.pencaucu.business.partido.impl;
 
 import com.github.alfonsoleandro.pencaucu.business.alumno.mapper.AlumnoMapper;
 import com.github.alfonsoleandro.pencaucu.business.alumno.model.response.AlumnoPrediccionesDTO;
+import com.github.alfonsoleandro.pencaucu.business.email.EmailService;
 import com.github.alfonsoleandro.pencaucu.business.equipo.exception.EquipoExceptionCode;
 import com.github.alfonsoleandro.pencaucu.business.partido.PartidoService;
 import com.github.alfonsoleandro.pencaucu.business.partido.exception.PartidoExceptionCode;
@@ -11,10 +12,7 @@ import com.github.alfonsoleandro.pencaucu.business.partido.model.response.Partid
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoDetailsDTO;
 import com.github.alfonsoleandro.pencaucu.business.partido.model.response.PartidoFechaDTO;
 import com.github.alfonsoleandro.pencaucu.persistence.entity.Usuario;
-import com.github.alfonsoleandro.pencaucu.persistence.repository.EquipoRepository;
-import com.github.alfonsoleandro.pencaucu.persistence.repository.JuegoRepository;
-import com.github.alfonsoleandro.pencaucu.persistence.repository.PartidoRepository;
-import com.github.alfonsoleandro.pencaucu.persistence.repository.PrediccionRepository;
+import com.github.alfonsoleandro.pencaucu.persistence.repository.*;
 import com.github.alfonsoleandro.pencaucu.persistence.view.AlumnosPrediccionesView;
 import com.github.alfonsoleandro.pencaucu.persistence.view.EquipoPrediccionPercentageView;
 import com.github.alfonsoleandro.pencaucu.persistence.view.PartidoSearchView;
@@ -22,22 +20,30 @@ import com.github.alfonsoleandro.pencaucu.rest.exception.ConflictException;
 import com.github.alfonsoleandro.pencaucu.rest.exception.NotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
  * @author alfonsoLeandro
  * @version 0.0.1
  */
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PartidoServiceImpl implements PartidoService {
 
 	private final AlumnoMapper alumnoMapper;
+	private final AlumnoRepository alumnoRepository;
+	private final EmailService emailService;
 	private final EquipoRepository equipoRepository;
+	private final EtapaRepository etapaRepository;
 	private final JuegoRepository juegoRepository;
 	private final PartidoMapper partidoMapper;
 	private final PartidoRepository partidoRepository;
@@ -73,7 +79,33 @@ public class PartidoServiceImpl implements PartidoService {
 
 		// Set equipos for partido
 		this.juegoRepository.insertEquiposForPartido(id, idEquipo1, idEquipo2);
-		//TODO: Send notification to all users that have a prediction for this partido, EXIT TRANSACTION
+
+		try {
+			enviarEmail(id, idEquipo1, idEquipo2);
+		} catch (Exception e) {
+			log.error("Error al enviar mail", e);
+		}
+	}
+
+	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	protected void enviarEmail(int id, int idEquipo1, int idEquipo2) {
+		boolean etapaAnunciadaByPartidoId = this.etapaRepository.isAnunciadaByPartidoId(id);
+		if (!etapaAnunciadaByPartidoId) {
+			this.etapaRepository.setAnunciadaByPartidoId(id);
+			Timestamp fecha = this.partidoRepository.getFechaById(id);
+			String nombreEquipo1 = this.equipoRepository.getNombreById(idEquipo1);
+			String nombreEquipo2 = this.equipoRepository.getNombreById(idEquipo2);
+
+			List<String> alumnoEmails = this.alumnoRepository.getAlumnoEmails();
+			String pattern = "EEEE dd MMMMM HH:mm";
+
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.of("es", "ES"));
+			String date = simpleDateFormat.format(fecha);
+			String emailBody = String.format("Se ha anunciado el partido el día %s vs %s  %s", nombreEquipo1, nombreEquipo2, date);
+			for (String alumnoEmail : alumnoEmails) {
+				this.emailService.sendEmail(alumnoEmail, emailBody);
+			}
+		}
 	}
 
 	@Override

@@ -25,8 +25,8 @@ public class MailConfig {
 
     public MailConfig() throws IOException {
         this.emailPassword = Files.readString(Path.of(System.getenv("EMAIL_PASSWORD_PATH")));
-        System.out.println(this.emailPassword);
     }
+
 
     @Bean
     public JavaMailSender getJavaMailSender() {

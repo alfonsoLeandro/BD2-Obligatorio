@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,4 +101,10 @@ public interface PartidoRepository extends JpaRepository<Partido, Integer> {
             """, nativeQuery = true)
     PartidoSearchView getPartidoData(int id, int idUsuario);
 
+    @Query(value = """
+            SELECT p.fecha
+            FROM partidos p
+            WHERE p.id = :id
+            """, nativeQuery = true)
+    Timestamp getFechaById(int id);
 }
