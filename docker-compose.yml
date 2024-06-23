@@ -1,4 +1,3 @@
-version: '3'
 services:
   mysql:
     image: mysql:latest
@@ -12,7 +11,7 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD", "bash", "-c", "mysql --user=$$USER_NAME --password=$$MYSQL_PASSWORD --execute 'SHOW DATABASES;'"]
+      test: ["CMD", "mysql", "-h", "localhost", "-u", "obligatorio_usr", "-pdb_pwd_1223334444", "-e", "USE obligatorio_db"]
       interval: 5s
       timeout: 50s
       retries: 10
@@ -20,24 +19,34 @@ services:
     build: ./backend
     environment:
       - USER_NAME=root
-      - DB_PASSWORD=db_pwd
-      - DB_USER_NAME=obligatorio_db
+      - DB_PASSWORD=db_pwd_1223334444
+      - DB_USER_NAME=obligatorio_usr
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/obligatorio_db
       - EMAIL=obligatorio17@outlook.com
       - EMAIL_PASSWORD=obligatorio_17
-      - REDIS_HOST=redis
       - JWT_SECRET_PATH=/run/secrets/jwt-secret
       - EMAIL=correoAutomaticoLA@outlook.com
       - EMAIL_PASSWORD_PATH=/run/secrets/email-pwd
     ports:
       - "8080:8080"
     volumes:
-      - /run/secrets:/run/secrets:ro
+      - type: bind
+        source: ./jwt-secret
+        target: /run/secrets/jwt-secret
+        read_only: true
+      - type: bind
+        source: ./email-pwd
+        target: /run/secrets/email-pwd
+        read_only: true
     secrets:
       - jwt-secret
       - email-pwd
     depends_on:
       mysql:
         condition: service_healthy
-      redis:
-        condition: service_started
+
+secrets:
+  jwt-secret:
+    file: ./jwt-secret
+  email-pwd:
+    file: ./email-pwd

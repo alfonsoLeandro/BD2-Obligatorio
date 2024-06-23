@@ -42,5 +42,6 @@ public interface AlumnoMapper {
     @Mapping(source = "nombreEquipo2", target = "equipo2.nombre")
     @Mapping(source = "prediccionEquipo2", target = "equipo2.prediccion")
     @Mapping(source = "golesEquipo2", target = "equipo2.goles")
+    @Mapping(target = "puntajeObtenido", ignore = true)
 	AlumnoPrediccionesDetalleDTO puntajeDetalleViewToDetalleDTO(AlumnoPuntajeDetalleView alumnoPuntajeView);
 }
