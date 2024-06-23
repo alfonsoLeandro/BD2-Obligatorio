@@ -10,6 +10,7 @@ import { AuthApiDto } from '../../models/auth-api-dto';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
+import { AlertService } from '../../services/alert.service';
 
 
 @Component({
@@ -44,7 +45,8 @@ export class LoginComponent {
         remember: new FormControl<boolean>(false)
     });
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,
+                private alertService: AlertService) {
     }
 
     login() {
@@ -59,6 +61,7 @@ export class LoginComponent {
                     this.router.navigate(['/home']);
                 },
                 error: (error) => {
+                    this.alertService.showError('Usuario o contraseña incorrectos');
                     console.log(error);
                 }
             });

@@ -24,7 +24,6 @@ export class AlertService {
         });
     }
 
-
     showSuccess(message?: string) {
         return Swal.fire({
             icon: 'success',

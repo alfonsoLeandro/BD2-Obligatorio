@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PartidoApiDto } from '../models/partido-api-dto';
 import { PartidoFechaApiDto } from '../models/partido-fecha-api-dto';
+import { PartidoDetalleApiDto } from '../models/partido-detalle-api-dto';
 
 @Injectable({
     providedIn: 'root'
@@ -55,5 +56,11 @@ export class PartidoService {
                     'Bearer ' + localStorage.getItem('token')),
                 params: params
             });
+    }
+
+    getPartido(id: number) {
+        return this.httpClient.get<PartidoDetalleApiDto>(`${this.urlBase}/partidos/${id}`, {
+            headers: this.httpHeaders.append('Authorization', 'Bearer ' + localStorage.getItem('token'))
+        });
     }
 }

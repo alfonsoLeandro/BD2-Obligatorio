@@ -1,0 +1,102 @@
+main {
+    background-color: #1c2433;
+    color: white;
+    padding: 10px;
+
+    .top {
+        flex-grow: 3;
+        background: #1c2433;
+        display: flex;
+        flex-direction: row;
+        padding: 30px 0;
+        justify-content: space-evenly;
+
+        .left, .right {
+            word-wrap: break-word;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+
+            span {
+                text-align: center;
+            }
+
+        }
+
+        .middle {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+
+            .no-determinado {
+                padding: 10px;
+                background: rgba(255, 0, 0, 0.5);
+                font-size: 2rem;
+                border-radius: 12px;
+            }
+
+            .resultado {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    .bottom {
+        padding: 2px 10px;
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.percentages {
+    padding: 20px;
+
+    .labels {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 10px;
+    }
+
+    .bar-container {
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 5px;
+        .bar {
+            height: 100%;
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+
+            // Empty space just for the span tp render
+            .percentage:before {
+                content: "\200D";
+            }
+
+            .percentage {
+                height: 100%;
+                white-space: pre;
+            }
+            .equipo1 {
+                background-color: rgba(0, 41, 255, 0.7);
+            }
+            .empate {
+                background-color: rgba(81, 81, 81, 0.7);
+            }
+            .equipo2 {
+                background-color: rgba(255, 0, 0, 0.7);
+            }
+        }
+    }
+}
+
+
+.predicciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

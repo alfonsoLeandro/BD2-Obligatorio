@@ -1,0 +1,81 @@
+<div class="container">
+    <mat-toolbar color="primary" class="toolbar">
+        <button mat-icon-button (click)="back()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        @if (role == Role.ADMIN) {
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="editResult()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        }
+    </mat-toolbar>
+    <main>
+        @if (partido) {
+            <div class="top">
+                <section class="left">
+                    <img [src]="equipo1FlagPath" alt="Bandera equipo 1" class="country-flag">
+                    <span>{{ partido.equipo1.nombre }}</span>
+                </section>
+                <section class="middle">
+                    @if (partido.equipo1.goles != null && partido.equipo2.goles != null) {
+                        <span class="resultado">{{ partido.equipo1.goles }} - {{ partido.equipo2.goles }}</span>
+                    } @else {
+                        <span class="no-determinado">N/D</span>
+                    }
+                    @if (partido.equipo1.prediccion != null && partido.equipo2.prediccion != null) {
+                        <span>{{ partido.equipo1.prediccion }} - {{ partido.equipo2.prediccion }}</span>
+                    } @else {
+                        <span>-</span>
+                    }
+                </section>
+                <section class="right">
+                    <img [src]="equipo2FlagPath" alt="Bandera equipo 2" class="country-flag">
+                    <span>{{ partido.equipo2.nombre }}</span>
+                </section>
+            </div>
+            <div class="bottom">
+                <span>{{ partido.fecha | date:'EEEE dd MMMM HH:mm' }}</span>
+                <span>{{ partido.etapa.nombre }}</span>
+            </div>
+        }
+    </main>
+
+    <section class="percentages">
+        @if (partido) {
+            <div class="labels">
+                <span class="label-equipo1">
+                    {{ partido.equipo1.nombre }} - {{ partido.equipo1.porcentaje || 0 | percent }}
+                </span>
+                <span class="label-equipo2">
+                    {{ partido.equipo2.porcentaje || 0 | percent }} - {{ partido.equipo2.nombre }}
+                </span>
+            </div>
+            <div class="bar-container">
+                <div class="bar">
+                    @if (partido.equipo1.porcentaje > 0) {
+                        <span class="equipo1 percentage" [style.flex-grow]="partido.equipo1.porcentaje"></span>
+                    }
+
+                    @if (getPorcentajeEmpate() > 0) {
+                        <span class="empate percentage" [style.flex-grow]="getPorcentajeEmpate()"></span>
+                    }
+
+                    @if (partido.equipo2.porcentaje > 0) {
+                        <span class="equipo2 percentage" [style.flex-grow]="partido.equipo2.porcentaje"></span>
+                    }
+                </div>
+            </div>
+        }
+    </section>
+
+    <section class="predicciones">
+        @if (partido && partido.predicciones.length > 0) {
+            @for (prediccion of partido.predicciones; track prediccion.idAlumno) {
+
+            }
+        } @else {
+            <h1>No hay predicciones disponibles</h1>
+        }
+    </section>
+</div>

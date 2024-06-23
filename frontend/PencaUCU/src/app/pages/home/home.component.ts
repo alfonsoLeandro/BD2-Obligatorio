@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIconButton } from '@angular/material/button';
@@ -34,7 +34,7 @@ import { PartidoEquiposDialogComponent } from '../../dialogs/partido-equipos-dia
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy {
 
     role: Role = Role.ALUMNO;
     $searchSub = new Subject<void>();
@@ -53,7 +53,7 @@ export class HomeComponent {
             .subscribe(() => {
                 this.getPartidos();
             });
-        this.role = localStorage.getItem('role') == "ADMIN" ? Role.ADMIN : Role.ALUMNO;
+        this.role = localStorage.getItem('role') == 'ADMIN' ? Role.ADMIN : Role.ALUMNO;
     }
 
     getPartidos() {
@@ -94,19 +94,28 @@ export class HomeComponent {
     addPartido() {
         this.dialog.open(PartidoEquiposDialogComponent, {
             width: '250px'
-        }).afterClosed().subscribe((result?: {idPartido: number, idEquipo1: number, idEquipo2: number}) => {
+        }).afterClosed().subscribe((result?: { idPartido: number, idEquipo1: number, idEquipo2: number }) => {
             if (result) {
-                this.partidoService.setPartidoEquipos(result.idPartido, result.idEquipo1, result.idEquipo2).subscribe({
-                    next: () => {
-                        this.alertService.showSuccess();
-                        this.getPartidos();
-                    },
-                    error: (error) => {
-                        this.alertService.showError(error.error?.message ?? 'Error inesperado');
-                    }
-                })
+                this.partidoService.setPartidoEquipos(result.idPartido, result.idEquipo1, result.idEquipo2)
+                    .subscribe({
+                        next: () => {
+                            this.alertService.showSuccess();
+                            this.getPartidos();
+                        },
+                        error: (error) => {
+                            this.alertService.showError(error.error?.message ?? 'Error inesperado');
+                        }
+                    })
             }
         });
+    }
+
+    navigateToPartido(id: number) {
+        this.router.navigate(['/partido', id]);
+    }
+
+    ngOnDestroy(): void {
+        this.$searchSub.subscribe();
     }
 
     protected readonly Role = Role;
