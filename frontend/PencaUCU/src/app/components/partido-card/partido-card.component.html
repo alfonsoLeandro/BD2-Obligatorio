@@ -8,10 +8,17 @@
             @if (partido.equipo1.goles != null && partido.equipo2.goles != null) {
                 <span class="resultado">{{ partido.equipo1.goles }} - {{ partido.equipo2.goles }}</span>
             } @else {
-                <span class="no-determinado">ND</span>
+                <span class="no-determinado">N/D</span>
             }
             @if (partido.equipo1.prediccion != null && partido.equipo2.prediccion != null) {
-                <span>{{ partido.equipo1.prediccion }} - {{ partido.equipo2.prediccion }}</span>
+                <span
+                    [ngClass]="{
+                        'red': resultadoErroneo(),
+                        'yellow': resultadoCercano(),
+                        'green': resultadoExacto()
+                        }"
+                >
+                    {{ partido.equipo1.prediccion }} - {{ partido.equipo2.prediccion }}</span>
             } @else {
                 <span>-</span>
             }
