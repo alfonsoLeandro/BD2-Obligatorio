@@ -44,7 +44,8 @@ CREATE TABLE IF NOT EXISTS partidos
 CREATE TABLE IF NOT EXISTS etapas
 (
     id     INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(20) NOT NULL
+    nombre VARCHAR(20) NOT NULL,
+    anunciado BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS juegos
@@ -176,7 +177,7 @@ VALUES (1, 'Argentina'),
        (16, 'Costa Rica');
 
 INSERT INTO etapas(id, nombre)
-VALUES (1, 'Grupos'),
+VALUES (1, 'Grupos', TRUE),
        (2, 'Cuartos'),
        (3, 'Semifinales'),
        (4, 'Tercer puesto'),
