@@ -72,7 +72,8 @@
     <section class="predicciones">
         @if (partido && partido.predicciones.length > 0) {
             @for (prediccion of partido.predicciones; track prediccion.idAlumno) {
-
+                <app-alumno-prediccion-card [alumnoPrediccion]="prediccion"></app-alumno-prediccion-card>
+                <mat-divider></mat-divider>
             }
         } @else {
             <h1>No hay predicciones disponibles</h1>

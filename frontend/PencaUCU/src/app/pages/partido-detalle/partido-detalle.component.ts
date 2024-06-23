@@ -11,6 +11,10 @@ import { DatePipe, Location, PercentPipe } from '@angular/common';
 import { PartidoDetalleApiDto } from '../../models/partido-detalle-api-dto';
 import { FlagService } from '../../services/flag.service';
 import { MatProgressBar } from '@angular/material/progress-bar';
+import {
+    AlumnoPrediccionCardComponent
+} from '../../components/alumno-prediccion-card/alumno-prediccion-card.component';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-partido-detalle',
@@ -21,7 +25,9 @@ import { MatProgressBar } from '@angular/material/progress-bar';
         MatToolbar,
         DatePipe,
         MatProgressBar,
-        PercentPipe
+        PercentPipe,
+        AlumnoPrediccionCardComponent,
+        MatDivider
     ],
   templateUrl: './partido-detalle.component.html',
   styleUrl: './partido-detalle.component.scss'

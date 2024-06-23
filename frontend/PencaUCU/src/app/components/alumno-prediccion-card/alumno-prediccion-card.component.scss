@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin: 2px 0;
+
+    .data {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .spacer {
+        flex: 1;
+    }
+
+    .prediccion, .nombre {
+        font-size: .95rem;
+    }
+}

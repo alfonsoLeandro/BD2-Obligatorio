@@ -7,5 +7,4 @@ export interface AlumnoPrediccionApiDto {
   carrera: CarreraApiDto;
   equipo1: EquipoPrediccionApiDto;
   equipo2: EquipoPrediccionApiDto;
-  predicciones: AlumnoPrediccionApiDto[];
 }
