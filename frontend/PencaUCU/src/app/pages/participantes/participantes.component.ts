@@ -11,11 +11,13 @@ import { AlumnoApiDto } from '../../models/alumno-api-dto';
 import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PartidoFilterDialogComponent } from '../../dialogs/partido-filter-dialog/partido-filter-dialog.component';
 import { AlumnoService } from '../../services/alumno.service';
 import Swal from 'sweetalert2';
 import { AlumnoCardComponent } from '../../components/alumno-card/alumno-card.component';
 import { MatDivider } from '@angular/material/divider';
+import {
+    ParticipanteFilterDialogComponent
+} from '../../dialogs/participante-filter-dialog/participante-filter-dialog.component';
 
 @Component({
     selector: 'app-participantes',
@@ -78,7 +80,7 @@ export class ParticipantesComponent implements OnDestroy {
 
 
     openFilters() {
-        this.dialog.open(PartidoFilterDialogComponent, {
+        this.dialog.open(ParticipanteFilterDialogComponent, {
             width: '250px',
             data: {
                 idCarrera: this.idCarrera,

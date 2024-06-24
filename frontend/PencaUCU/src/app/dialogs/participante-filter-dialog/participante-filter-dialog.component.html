@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="title">
+        <strong>Filtrar participantes</strong>
+        <mat-icon (click)="cancel()">close</mat-icon>
+    </div>
+    <section class="inputs">
+        <mat-form-field appearance="outline">
+            <mat-label>Carrera</mat-label>
+            <mat-select [(ngModel)]="idCarrera">
+                <mat-option [value]="undefined">Todas</mat-option>
+                @for(carrera of availableCarreras; track carrera.id) {
+                    <mat-option [value]="carrera.id">{{ carrera.nombre }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Es admin</mat-label>
+            <mat-select [(ngModel)]="isAdmin">
+                <mat-option [value]="undefined">Todos</mat-option>
+                <mat-option [value]="true">Si</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+
+    <section class="buttons">
+        <button mat-raised-button color="primary" (click)="accept()">Aplicar</button>
+    </section>
+
+</div>

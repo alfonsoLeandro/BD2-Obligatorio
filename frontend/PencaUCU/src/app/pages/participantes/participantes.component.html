@@ -9,7 +9,8 @@
 
     <div class="search-box">
         <mat-form-field>
-            <input matInput placeholder="Buscar partidos" [(ngModel)]="searchText" (ngModelChange)="$searchSub.next()">
+            <input matInput placeholder="Buscar participantes" [(ngModel)]="searchText"
+                   (ngModelChange)="$searchSub.next()">
             <mat-icon matPrefix>search</mat-icon>
             @if (searchText.length > 0) {
                 <mat-icon matSuffix (click)="searchText = ''; getAlumnos()">close</mat-icon>
