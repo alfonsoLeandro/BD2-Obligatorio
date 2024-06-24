@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { debounceTime, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { PartidoFilterDialogComponent } from '../../dialogs/partido-filter-dialog/partido-filter-dialog.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Role } from '../../models/role';
 import { PartidoEquiposDialogComponent } from '../../dialogs/partido-equipos-dialog/partido-equipos-dialog.component';
 
@@ -29,7 +29,8 @@ import { PartidoEquiposDialogComponent } from '../../dialogs/partido-equipos-dia
         PartidoCardComponent,
         MatSuffix,
         MatPrefix,
-        FormsModule
+        FormsModule,
+        RouterLink
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'

@@ -1,13 +1,7 @@
 <div class="container">
     <mat-toolbar color="primary" class="toolbar">
-        @if (role == Role.ADMIN) {
-            <button mat-icon-button (click)="addPartido()">
-                <mat-icon>add</mat-icon>
-            </button>
-        } @else {
-            <span class="spacer"></span>
-        }
-        <span>Partidos</span>
+        <span class="spacer"></span>
+        <span>Participantes</span>
         <button mat-icon-button (click)="logout()">
             <mat-icon>logout</mat-icon>
         </button>
@@ -18,7 +12,7 @@
             <input matInput placeholder="Buscar partidos" [(ngModel)]="searchText" (ngModelChange)="$searchSub.next()">
             <mat-icon matPrefix>search</mat-icon>
             @if (searchText.length > 0) {
-                <mat-icon matSuffix (click)="searchText = ''; getPartidos()">close</mat-icon>
+                <mat-icon matSuffix (click)="searchText = ''; getAlumnos()">close</mat-icon>
             }
         </mat-form-field>
         <button mat-icon-button (click)="openFilters()">
@@ -26,17 +20,18 @@
         </button>
     </div>
 
-    <main class="partidos-list">
-        @if (partidos.length > 0) {
-            @for (partido of partidos; track partido.id) {
-                <app-partido-card
-                    [partido]="partido"
-                    class="partido-card"
-                    (click)="navigateToPartido(partido.id)"
-                ></app-partido-card>
+    <main class="alumnos-list">
+        @if (alumnos && alumnos.length > 0) {
+            @for (alumno of alumnos; track alumno.id) {
+                <app-alumno-card
+                    [alumno]="alumno"
+                    class="alumno"
+                    (click)="navigateToAlumno(alumno.id)"
+                ></app-alumno-card>
+                <mat-divider></mat-divider>
             }
         } @else {
-            <span>No hay partidos disponibles</span>
+            <span>No hay participantes disponibles</span>
         }
     </main>
 

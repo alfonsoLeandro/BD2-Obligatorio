@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin: 2px 0;
+
+    .data {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .spacer {
+        flex: 1;
+    }
+
+    .nombre {
+        font-size: .95rem;
+    }
+
+    .carrera {
+        font-weight: lighter;
+    }
+
+    .puntaje {
+        font-size: 1rem;
+    }
+
+}
