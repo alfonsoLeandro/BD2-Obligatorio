@@ -18,16 +18,34 @@
                     <span>{{ partido.equipo1.nombre }}</span>
                 </section>
                 <section class="middle">
-                    @if (partido.equipo1.goles != null && partido.equipo2.goles != null) {
-                        <span class="resultado">{{ partido.equipo1.goles }} - {{ partido.equipo2.goles }}</span>
-                    } @else {
-                        <span class="no-determinado">N/D</span>
-                    }
-                    @if (partido.equipo1.prediccion != null && partido.equipo2.prediccion != null) {
-                        <span>{{ partido.equipo1.prediccion }} - {{ partido.equipo2.prediccion }}</span>
-                    } @else {
-                        <span>-</span>
-                    }
+                    <span class="resultado-space">
+                        @if (partido.equipo1.goles != null && partido.equipo2.goles != null) {
+                            <span class="resultado">{{ partido.equipo1.goles }} - {{ partido.equipo2.goles }}</span>
+                        } @else {
+                            <span class="no-determinado">N/D</span>
+                        }
+                    </span>
+                    <span class="prediccion-space">
+                        @if ((partido.equipo1.prediccion != null || partido.equipo2.prediccion != null) && canEditPrediccion()) {
+                            <button mat-icon-button (click)="deletePrediccion()">
+                                <mat-icon color="warn">delete</mat-icon>
+                            </button>
+                        }
+                        @if (partido.equipo1.prediccion != null || partido.equipo2.prediccion != null) {
+                            <span class="prediccion"
+                                  [ngClass]="{
+                                    'red': resultadoErroneo(),
+                                    'yellow': resultadoCercano(),
+                                    'green': resultadoExacto()
+                                  }"
+                            >{{ partido.equipo1.prediccion }} - {{ partido.equipo2.prediccion }}</span>
+                        }
+                        @if (canEditPrediccion()) {
+                            <button mat-icon-button (click)="editPrediccion()">
+                                <mat-icon class="green">edit</mat-icon>
+                            </button>
+                        }
+                    </span>
                 </section>
                 <section class="right">
                     <img [src]="equipo2FlagPath" alt="Bandera equipo 2" class="country-flag">

@@ -1,0 +1,36 @@
+.container {
+    border-radius: 30px;
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    flex-direction: column;
+
+    .title {
+        display: flex;
+        justify-content: space-between;
+    }
+    .inputs, .buttons-increase, .buttons-decrease {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+
+        mat-form-field {
+            padding-top: 22px;
+            width: 3.5rem;
+        }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+    .buttons-increase, .buttons-decrease {
+        gap: 25px;
+    }
+
+
+    .buttons {
+        align-self: end;
+    }
+}

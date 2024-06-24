@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="title">
+        <strong>{{ titulo }}</strong>
+        <mat-icon (click)="cancel()">close</mat-icon>
+    </div>
+    <div class="touchable">
+        <section class="buttons-increase">
+            <button mat-mini-fab color="primary" (click)="increase(golesEquipo1)">
+                <mat-icon>keyboard_arrow_up</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" (click)="increase(golesEquipo2)">
+                <mat-icon>keyboard_arrow_up</mat-icon>
+            </button>
+        </section>
+        <section class="inputs">
+            <mat-form-field>
+                <input matInput type="number" [formControl]="golesEquipo1"/>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" [formControl]="golesEquipo2"/>
+            </mat-form-field>
+        </section>
+        <section class="buttons-decrease">
+            <button mat-mini-fab color="primary" (click)="decrease(golesEquipo1)">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" (click)="decrease(golesEquipo2)">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+        </section>
+    </div>
+
+    <section class="buttons">
+        <button mat-raised-button color="primary" (click)="accept()">Guardar</button>
+    </section>
+
+</div>
