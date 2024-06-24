@@ -27,7 +27,7 @@
                     </span>
                     <span class="prediccion-space">
                         @if ((partido.equipo1.prediccion != null || partido.equipo2.prediccion != null) && canEditPrediccion()) {
-                            <button mat-icon-button (click)="deletePrediccion()">
+                            <button mat-icon-button class="delete" (click)="deletePrediccion()">
                                 <mat-icon color="warn">delete</mat-icon>
                             </button>
                         }
@@ -41,7 +41,7 @@
                             >{{ partido.equipo1.prediccion }} - {{ partido.equipo2.prediccion }}</span>
                         }
                         @if (canEditPrediccion()) {
-                            <button mat-icon-button (click)="editPrediccion()">
+                            <button mat-icon-button class="edit" (click)="editPrediccion()">
                                 <mat-icon class="green">edit</mat-icon>
                             </button>
                         }

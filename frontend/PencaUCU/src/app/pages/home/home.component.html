@@ -29,7 +29,11 @@
     <main class="partidos-list">
         @if (partidos.length > 0) {
             @for (partido of partidos; track partido.id) {
-                <app-partido-card class="partido-card" [partido]="partido" (click)="navigateToPartido(partido.id)"></app-partido-card>
+                <app-partido-card
+                    [partido]="partido"
+                    class="partido-card"
+                    (click)="navigateToPartido(partido.id)"
+                ></app-partido-card>
             }
         } @else {
             <span>No hay partidos disponibles</span>

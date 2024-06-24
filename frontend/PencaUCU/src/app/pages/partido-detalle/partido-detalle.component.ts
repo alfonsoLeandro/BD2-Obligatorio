@@ -18,6 +18,7 @@ import { MatDivider } from '@angular/material/divider';
 import { PrediccionService } from '../../services/prediccion.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GoalEditDialogComponent } from '../../dialogs/goal-edit-dialog/goal-edit-dialog.component';
+import { EquipoGoalsApiDto } from '../../models/equipo-goals-api-dto';
 
 @Component({
     selector: 'app-partido-detalle',
@@ -81,7 +82,34 @@ export class PartidoDetalleComponent {
     }
 
     editResult() {
-        //TODO
+        this.dialog.open(GoalEditDialogComponent, {
+            width: '250px',
+            data: {
+                titulo: 'Editar resultado',
+                golesEquipo1: this.partido.equipo1.goles,
+                golesEquipo2: this.partido.equipo2.goles
+            }
+        }).afterClosed()
+            .subscribe((result: { golesEquipo1: number, golesEquipo2: number }) => {
+                if (result) {
+                    this.alertService.showLoading();
+                    const equipo1: EquipoGoalsApiDto = { id: this.partido.equipo1.id, goles: result.golesEquipo1 };
+                    const equipo2: EquipoGoalsApiDto = { id: this.partido.equipo2.id, goles: result.golesEquipo2 };
+                    this.partidoService.editResultado(this.idPartido, equipo1, equipo2).subscribe({
+                        next: () => {
+                            this.getPartido();
+                        },
+                        error: (error) => {
+                            Swal.close();
+                            if (error.error && error.error.message) {
+                                this.alertService.showError(error.error.message);
+                            } else {
+                                this.alertService.showError('Error al guardar la predicción');
+                            }
+                        }
+                    });
+                }
+            });
     }
 
     getPorcentajeEmpate() {

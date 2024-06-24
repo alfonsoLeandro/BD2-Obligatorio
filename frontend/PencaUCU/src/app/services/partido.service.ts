@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PartidoApiDto } from '../models/partido-api-dto';
 import { PartidoFechaApiDto } from '../models/partido-fecha-api-dto';
 import { PartidoDetalleApiDto } from '../models/partido-detalle-api-dto';
+import { EquipoGoalsApiDto } from '../models/equipo-goals-api-dto';
 
 @Injectable({
     providedIn: 'root'
@@ -64,4 +65,12 @@ export class PartidoService {
         });
     }
 
+    editResultado(idPartido: number, equipo1: EquipoGoalsApiDto, equipo2: EquipoGoalsApiDto) {
+        return this.httpClient.put<void>(`${this.urlBase}/admin/partidos/${idPartido}/resultado`, {
+            equipo1,
+            equipo2
+        }, {
+            headers: this.httpHeaders.append('Authorization', 'Bearer ' + localStorage.getItem('token'))
+        });
+    }
 }
