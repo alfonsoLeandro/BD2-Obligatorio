@@ -76,7 +76,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 		// Build DTO
 		List<AlumnoDTO> alumnoDTOs = new ArrayList<>();
 
-		for (Map.Entry<Integer, AlumnoPuntajeView> alumnoPuntajeView : alumnoPuntajeViewByIdUsuario.entrySet()) {
+		for (Map.Entry<Integer, AlumnoPuntajeView> alumnoPuntajeView : alumnoPuntajeViewByIdUsuario
+				.entrySet()
+				.stream()
+				.sorted((c1, c2) -> puntosByIdUsuario.get(c2.getKey()).compareTo(puntosByIdUsuario.get(c1.getKey())))
+				.collect(Collectors.toCollection(LinkedHashSet::new))) {
+
 			AlumnoDTO alumnoDTO = this.alumnoMapper.puntajeViewToDTO(alumnoPuntajeView.getValue());
 			alumnoDTO.setPuntaje(puntosByIdUsuario.get(alumnoPuntajeView.getKey()));
 
@@ -174,7 +179,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioDetalleDTO;
 	}
 
-	private int getPuntajeFromPredicciones(Integer prediccionEquipo1, Integer golesEquipo1, Integer prediccionEquipo2, Integer golesEquipo2) {
+	private int getPuntajeFromPredicciones(Integer prediccionEquipo1, Integer golesEquipo1, Integer
+			prediccionEquipo2, Integer golesEquipo2) {
 		if (prediccionEquipo1 == null || golesEquipo1 == null || prediccionEquipo2 == null || golesEquipo2 == null) {
 			return 0;
 		}
@@ -187,7 +193,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return puntaje;
 	}
 
-	private int getPuntajeFromElecciones(Integer prediccionCampeon, Integer prediccionSubcampeon, Integer idCampeon, Integer idSubcampeon) {
+	private int getPuntajeFromElecciones(Integer prediccionCampeon, Integer prediccionSubcampeon, Integer
+			idCampeon, Integer idSubcampeon) {
 		int puntaje = 0;
 		if (prediccionCampeon != null && prediccionCampeon.equals(idCampeon)) {
 			puntaje += 10;
