@@ -27,7 +27,7 @@
                 <app-alumno-card
                     [alumno]="alumno"
                     class="alumno"
-                    (click)="navigateToAlumno(alumno.id)"
+                    (click)="navigateToUsuario(alumno.id)"
                 ></app-alumno-card>
                 <mat-divider></mat-divider>
             }
@@ -43,7 +43,7 @@
         <button mat-icon-button routerLink="/home">
             <mat-icon>sports_soccer</mat-icon>
         </button>
-        <button mat-icon-button routerLink="/participantes">
+        <button mat-icon-button routerLink="/usuarios">
             <mat-icon>groups</mat-icon>
         </button>
     </mat-toolbar>

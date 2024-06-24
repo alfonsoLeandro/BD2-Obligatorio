@@ -11,7 +11,7 @@ import { AlumnoApiDto } from '../../models/alumno-api-dto';
 import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AlumnoService } from '../../services/alumno.service';
+import { UsuarioService } from '../../services/usuario.service';
 import Swal from 'sweetalert2';
 import { AlumnoCardComponent } from '../../components/alumno-card/alumno-card.component';
 import { MatDivider } from '@angular/material/divider';
@@ -20,7 +20,7 @@ import {
 } from '../../dialogs/participante-filter-dialog/participante-filter-dialog.component';
 
 @Component({
-    selector: 'app-participantes',
+    selector: 'app-usuarios',
     standalone: true,
     imports: [
         FormsModule,
@@ -36,10 +36,10 @@ import {
         MatDivider,
         RouterLink
     ],
-    templateUrl: './participantes.component.html',
-    styleUrl: './participantes.component.scss'
+    templateUrl: './usuarios.component.html',
+    styleUrl: './usuarios.component.scss'
 })
-export class ParticipantesComponent implements OnDestroy {
+export class UsuariosComponent implements OnDestroy {
 
     $searchSub = new Subject<void>();
     alumnos: AlumnoApiDto[] = [];
@@ -47,7 +47,7 @@ export class ParticipantesComponent implements OnDestroy {
     idCarrera?: number;
     isAdmin?: boolean;
 
-    constructor(private alumnoService: AlumnoService,
+    constructor(private alumnoService: UsuarioService,
                 private router: Router,
                 private alertService: AlertService,
                 private dialog: MatDialog) {
@@ -61,7 +61,7 @@ export class ParticipantesComponent implements OnDestroy {
 
     getAlumnos() {
         this.alertService.showLoading();
-        this.alumnoService.getAlumnos(this.searchText, this.idCarrera, this.isAdmin).subscribe({
+        this.alumnoService.getUsuarios(this.searchText, this.idCarrera, this.isAdmin).subscribe({
             next: (alumnos) => {
                 this.alumnos = alumnos;
                 Swal.close();
@@ -77,7 +77,6 @@ export class ParticipantesComponent implements OnDestroy {
             }
         });
     }
-
 
     openFilters() {
         this.dialog.open(ParticipanteFilterDialogComponent, {
@@ -104,8 +103,8 @@ export class ParticipantesComponent implements OnDestroy {
         this.$searchSub.subscribe();
     }
 
-    navigateToAlumno(id: number) {
-        this.router.navigate(['/participante', id]);
+    navigateToUsuario(id: number) {
+        this.router.navigate(['/usuario', id]);
     }
 
 }

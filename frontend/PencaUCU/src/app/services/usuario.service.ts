@@ -5,7 +5,7 @@ import { AlumnoApiDto } from '../models/alumno-api-dto';
 @Injectable({
     providedIn: 'root'
 })
-export class AlumnoService {
+export class UsuarioService {
 
     private readonly httpHeaders: HttpHeaders = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export class AlumnoService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getAlumnos(searchText?: string, idCarrera?: number, isAdmin?: boolean) {
+    getUsuarios(searchText?: string, idCarrera?: number, isAdmin?: boolean) {
         let params: HttpParams = new HttpParams();
         if (searchText) {
             params = params.set('busqueda', searchText);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
 import { PartidoService } from '../../services/partido.service';
 import Swal from 'sweetalert2';
@@ -46,7 +46,6 @@ export class PartidoDetalleComponent {
     equipo2FlagPath: string = '';
 
     constructor(private route: ActivatedRoute,
-                private router: Router,
                 private location: Location,
                 private alertService: AlertService,
                 private partidoService: PartidoService,
@@ -72,7 +71,7 @@ export class PartidoDetalleComponent {
             error: (error) => {
                 console.log(error);
                 this.alertService.showError('Error al cargar el partido');
-                this.router.navigate(['/home']);
+                this.location.back();
             }
         });
     }
