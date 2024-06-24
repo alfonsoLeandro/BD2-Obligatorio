@@ -58,6 +58,7 @@ public interface PartidoRepository extends JpaRepository<Partido, Integer> {
                 AND (:busqueda IS NULL OR (eq1.nombre RLIKE :busqueda OR eq2.nombre RLIKE :busqueda))
                 AND (:jugado IS NULL OR (j1.goles IS NOT NULL = :jugado AND j2.goles IS NOT NULL = :jugado))
                 AND (:conPrediccion IS NULL OR (p1.goles IS NOT NULL = :conPrediccion AND p2.goles IS NOT NULL = :conPrediccion))
+            ORDER BY p.fecha
             """, nativeQuery = true)
     List<PartidoSearchView> searchPartidos(Integer idUsuario, String busqueda, Boolean jugado, Boolean conPrediccion);
 
