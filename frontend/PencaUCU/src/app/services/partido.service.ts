@@ -63,4 +63,5 @@ export class PartidoService {
             headers: this.httpHeaders.append('Authorization', 'Bearer ' + localStorage.getItem('token'))
         });
     }
+
 }
