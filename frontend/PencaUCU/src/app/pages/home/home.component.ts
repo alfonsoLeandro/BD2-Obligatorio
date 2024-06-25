@@ -54,7 +54,7 @@ export class HomeComponent implements OnDestroy {
             .subscribe(() => {
                 this.getPartidos();
             });
-        this.role = localStorage.getItem('role') == 'ADMIN' ? Role.ADMIN : Role.ALUMNO;
+        this.role = localStorage.getItem('rol') == 'ADMIN' ? Role.ADMIN : Role.ALUMNO;
     }
 
     getPartidos() {

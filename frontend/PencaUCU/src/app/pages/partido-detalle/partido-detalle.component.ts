@@ -53,7 +53,7 @@ export class PartidoDetalleComponent {
                 private prediccionService: PrediccionService,
                 private dialog: MatDialog) {
         this.alertService.showLoading();
-        this.role = localStorage.getItem('role') == 'ADMIN' ? Role.ADMIN : Role.ALUMNO;
+        this.role = localStorage.getItem('rol') == 'ADMIN' ? Role.ADMIN : Role.ALUMNO;
         this.route.params.subscribe(params => {
             this.idPartido = params['id'];
             this.getPartido();
