@@ -66,7 +66,7 @@ export class PartidoService {
     }
 
     editResultado(idPartido: number, equipo1: EquipoGoalsApiDto, equipo2: EquipoGoalsApiDto) {
-        return this.httpClient.put<void>(`${this.urlBase}/admin/partidos/${idPartido}/resultado`, {
+        return this.httpClient.post<void>(`${this.urlBase}/admin/partidos/${idPartido}/resultado`, {
             equipo1,
             equipo2
         }, {
