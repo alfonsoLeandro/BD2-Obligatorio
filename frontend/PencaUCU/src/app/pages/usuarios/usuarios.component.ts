@@ -71,7 +71,7 @@ export class UsuariosComponent implements OnDestroy {
                 if (error.error && error.error.message) {
                     this.alertService.showError(error.error.message);
                 } else {
-                    this.alertService.showError('Ocurrió un error al obtener los participantes');
+                    this.alertService.showError('Ocurrió un error al obtener los usuarios');
                 }
 
             }
