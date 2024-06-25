@@ -35,7 +35,7 @@ main {
             align-items: center;
             gap: 30px;
 
-            .resultado-space {
+            .resultado-container {
                 padding: 10px;
                 font-size: 2rem;
                 .no-determinado {
@@ -47,15 +47,16 @@ main {
 
             }
 
-            .prediccion {
-                font-size: 1.2rem;
-            }
 
-            .prediccion-space {
+            .prediccion-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 5px;
+
+                .prediccion {
+                    font-size: 1.2rem;
+                }
             }
 
             .delete {

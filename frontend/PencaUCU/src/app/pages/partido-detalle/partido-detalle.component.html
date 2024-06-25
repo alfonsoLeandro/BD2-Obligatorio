@@ -18,14 +18,14 @@
                     <span>{{ partido.equipo1.nombre }}</span>
                 </section>
                 <section class="middle">
-                    <span class="resultado-space">
+                    <span class="resultado-container">
                         @if (partido.equipo1.goles != null && partido.equipo2.goles != null) {
                             <span class="resultado">{{ partido.equipo1.goles }} - {{ partido.equipo2.goles }}</span>
                         } @else {
                             <span class="no-determinado">N/D</span>
                         }
                     </span>
-                    <span class="prediccion-space">
+                    <span class="prediccion-container">
                         @if ((partido.equipo1.prediccion != null || partido.equipo2.prediccion != null) && canEditPrediccion()) {
                             <button mat-icon-button class="delete" (click)="deletePrediccion()">
                                 <mat-icon color="warn">delete</mat-icon>

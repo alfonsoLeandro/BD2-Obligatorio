@@ -1,0 +1,46 @@
+<div class="container">
+    <mat-toolbar color="primary" class="toolbar">
+        <button mat-icon-button (click)="back()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        @if (role == Role.ADMIN) {
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="editUser()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        }
+    </mat-toolbar>
+    <main>
+        @if (usuario) {
+            <div class="left">
+                <span class="nombre">{{ usuario.nombre }}</span>
+                <span class="carrera">{{ usuario.carrera.nombre }}</span>
+                <span class="campeon">
+                    Campeón: {{ usuario.campeon.nombre }}
+                    <img [src]="getFlagPath(usuario.campeon.id)" alt="Bandera del campeón">
+                </span>
+                <span class="subcampeon">
+                    Subcampeón: {{ usuario.subcampeon.nombre }}
+                    <img [src]="getFlagPath(usuario.subcampeon.id)" alt="Bandera del subcampeón">
+                </span>
+            </div>
+            <div class="right">
+                <span class="puntaje">{{ usuario.puntaje }} puntos</span>
+                <span class="ranking">#{{ usuario.ranking }}</span>
+            </div>
+        }
+    </main>
+
+    <section class="predicciones">
+        @if (usuario && usuario.predicciones.length > 0) {
+            @for (prediccion of usuario.predicciones; track prediccion.idPartido) {
+                <app-alumno-prediccion-detalle-card
+                    [alumnoPrediccion]="prediccion"
+                ></app-alumno-prediccion-detalle-card>
+                <mat-divider></mat-divider>
+            }
+        } @else {
+            <h1>No hay predicciones disponibles</h1>
+        }
+    </section>
+</div>

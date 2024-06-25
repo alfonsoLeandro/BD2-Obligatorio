@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="equipos">
+        <div class="equipo1">
+            <img [src]="getFlagPath(alumnoPrediccion.equipo1.id)" alt="Bandera de {{alumnoPrediccion.equipo1.nombre}}">
+            <span>{{ alumnoPrediccion.equipo1.nombre }}</span>
+        </div>
+
+        <div class="resultado-container">
+            <span class="resultado">
+                {{ alumnoPrediccion.equipo1.goles }} - {{ alumnoPrediccion.equipo2.goles }}
+            </span>
+            <span class="prediccion"
+                  [ngClass]="{
+                        'red': resultadoErroneo(),
+                        'yellow': resultadoCercano(),
+                        'green': resultadoExacto()
+                        }"
+            >
+                {{ alumnoPrediccion.equipo1.prediccion }} - {{ alumnoPrediccion.equipo2.prediccion }}
+            </span>
+        </div>
+
+        <div class="equipo2">
+            <img [src]="getFlagPath(alumnoPrediccion.equipo2.id)" alt="Bandera de {{alumnoPrediccion.equipo2.nombre}}">
+            <span>{{ alumnoPrediccion.equipo2.nombre }}</span>
+        </div>
+    </div>
+    <div class="info">
+        <div class="fecha">
+            {{ alumnoPrediccion.fecha | date: 'EEEE dd MMMM HH:mm' }}
+        </div>
+        <div class="etapa">
+            {{ alumnoPrediccion.etapa.nombre }}
+        </div>
+    </div>
+    <div class="puntaje"
+        [ngClass]="{
+            'green': alumnoPrediccion.puntajeObtenido > 0
+        }"
+    >
+        @if (alumnoPrediccion.puntajeObtenido) {
+            +
+        }
+        {{ alumnoPrediccion.puntajeObtenido }}
+    </div>
+</div>
