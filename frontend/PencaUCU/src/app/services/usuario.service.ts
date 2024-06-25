@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AlumnoApiDto } from '../models/alumno-api-dto';
+import { UsuarioDetalleApiDto } from '../models/usuario-detalle-api-dto';
 
 @Injectable({
     providedIn: 'root'
@@ -36,4 +37,11 @@ export class UsuarioService {
             });
     }
 
+    getUsuarioDetalle(id: number) {
+        return this.httpClient.get<UsuarioDetalleApiDto>(`${this.urlBase}/usuarios/${id}`,
+            {
+                headers: this.httpHeaders.append('Authorization',
+                    'Bearer ' + localStorage.getItem('token'))
+            });
+    }
 }
