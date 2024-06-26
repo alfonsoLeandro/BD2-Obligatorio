@@ -107,6 +107,7 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 		         LEFT JOIN juegos j1 ON j1.id_partido = p1.id_partido AND j1.id_equipo = p1.id_equipo
 		         LEFT JOIN juegos j2 ON j2.id_partido = j1.id_partido AND j2.id_equipo = p2.id_equipo
 		WHERE (p1.id IS NULL OR p2.id IS NULL OR p1.id_equipo > p2.id_equipo)
+		ORDER BY p.fecha
 		""", nativeQuery = true)
 	List<AlumnoPuntajeDetalleView> findAlumnoDetalles();
 
