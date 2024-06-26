@@ -15,6 +15,10 @@ services:
       interval: 5s
       timeout: 50s
       retries: 10
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
   backend:
     build: ./backend
     environment:
