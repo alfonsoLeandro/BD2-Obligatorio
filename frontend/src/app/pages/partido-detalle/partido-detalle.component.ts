@@ -19,6 +19,7 @@ import { PrediccionService } from '../../services/prediccion.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GoalEditDialogComponent } from '../../dialogs/goal-edit-dialog/goal-edit-dialog.component';
 import { EquipoGoalsApiDto } from '../../models/equipo-goals-api-dto';
+import { Utils } from '../../utils/Utils';
 
 @Component({
     selector: 'app-partido-detalle',
@@ -183,46 +184,7 @@ export class PartidoDetalleComponent {
             });
     }
 
-    resultadoErroneo() {
-        const pred1 = this.partido.equipo1.prediccion;
-        const pred2 = this.partido.equipo2.prediccion;
-        const goles1 = this.partido.equipo1.goles;
-        const goles2 = this.partido.equipo2.goles;
-
-        if (pred1 == null || pred2 == null || goles1 == null || goles2 == null) {
-            return false;
-        }
-
-        return (pred1 > pred2 !== goles1 > goles2) || (pred1 == pred2 && goles1 != goles2) || (pred1 != pred2 && goles1 == goles2);
-
-    }
-
-    resultadoCercano() {
-        const pred1 = this.partido.equipo1.prediccion;
-        const pred2 = this.partido.equipo2.prediccion;
-        const goles1 = this.partido.equipo1.goles;
-        const goles2 = this.partido.equipo2.goles;
-
-        if (pred1 == null || pred2 == null || goles1 == null || goles2 == null) {
-            return false;
-        }
-
-        return (pred1 > goles1) == (pred2 > goles2);
-
-    }
-
-    resultadoExacto() {
-        const pred1 = this.partido.equipo1.prediccion;
-        const pred2 = this.partido.equipo2.prediccion;
-        const goles1 = this.partido.equipo1.goles;
-        const goles2 = this.partido.equipo2.goles;
-        if (pred1 == null || pred2 == null || goles1 == null || goles2 == null) {
-            return false;
-        }
-
-        return pred1 == goles1 && pred2 == goles2;
-    }
-
     protected readonly Role = Role;
+    protected readonly Utils = Utils;
 
 }

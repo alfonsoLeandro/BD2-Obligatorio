@@ -11,9 +11,9 @@
             </span>
             <span class="prediccion"
                   [ngClass]="{
-                        'red': resultadoErroneo(),
-                        'yellow': resultadoCercano(),
-                        'green': resultadoExacto()
+                        'red': Utils.resultadoErroneo(alumnoPrediccion),
+                        'yellow': Utils.resultadoCercano(alumnoPrediccion),
+                        'green': Utils.resultadoExacto(alumnoPrediccion)
                         }"
             >
                 {{ alumnoPrediccion.equipo1.prediccion }} - {{ alumnoPrediccion.equipo2.prediccion }}

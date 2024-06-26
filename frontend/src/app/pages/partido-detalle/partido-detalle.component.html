@@ -34,9 +34,9 @@
                         @if (partido.equipo1.prediccion != null || partido.equipo2.prediccion != null) {
                             <span class="prediccion"
                                   [ngClass]="{
-                                    'red': resultadoErroneo(),
-                                    'yellow': resultadoCercano(),
-                                    'green': resultadoExacto()
+                                    'red': Utils.resultadoErroneo(partido),
+                                    'yellow': Utils.resultadoCercano(partido),
+                                    'green': Utils.resultadoExacto(partido)
                                   }"
                             >{{ partido.equipo1.prediccion }} - {{ partido.equipo2.prediccion }}</span>
                         }

@@ -3,6 +3,7 @@ import { PartidoApiDto } from '../../models/partido-api-dto';
 import { FlagService } from '../../services/flag.service';
 import { DatePipe, NgClass } from '@angular/common';
 import { MatButton } from '@angular/material/button';
+import { Utils } from '../../utils/Utils';
 
 @Component({
     selector: 'app-partido-card',
@@ -71,4 +72,5 @@ export class PartidoCardComponent implements OnInit {
         return pred1 == goles1 && pred2 == goles2;
     }
 
+    protected readonly Utils = Utils;
 }
