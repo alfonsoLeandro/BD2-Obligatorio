@@ -1,0 +1,44 @@
+Obligatorio BD2 - requisitos:
+
+- se debe poder crear usuarios
+- debe haber un login
+- se debe calcular el ganador y el 2do ganador de la penca
+- se debe poder calcular los puntos de un usuario segun sus predicciones
+- se debe poder listar todos los usuarios y ver su puntaje
+- se debe cargar equipo subcampeon y equipo campeon el crear un usuario
+- dado un usuario, se debe poder ver todas sus predicciones
+- se debe poder ver las predicciones de un usuario ingresado (el que usa la app)
+- se debe poder ver estadisticas de acierto de un partido dado
+- se debe poder ver los partidos:
+	- disponibles para predecir
+	- ya predichos
+	- jugados
+	- por jugar
+	- por fecha
+	- por nombre de equipos
+	
+- usuario:
+	- debe poder ver partidos (jugados ocultos y por jugar mostrados) (ordenados por fecha de partido, mas reciente a mas viejo)
+	- debe poder ver su perfil
+		el perfil debe tener:
+			- puntaje
+			- desgloce de puntaje
+			- posicion en el top
+	- debe poder ver lista de participantes
+- admin:
+	- debe poder ver partidos (jugados y por jugar siempre visibles) (ordenados por fecha de partido, mas reciente a mas viejo)
+	- debe poder agregar partidos
+	- debe poder ver lista de participantes
+	- debe poder editar un participante (nombre, apellido, CI, correo, telefono, carrera, ES_ADMIN)
+	- debe poder establecer usuario como admin (editar participante)
+
+
+
+
+
+
+proceso de calculo de puntajes:
+	para cada prediccion:
+		obtener partido y goles por equipo
+		verificar quien ganó
+	verificar si existe campeon y subcampeón
