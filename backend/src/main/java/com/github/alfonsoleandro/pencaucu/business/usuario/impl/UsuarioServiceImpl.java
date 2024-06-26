@@ -168,8 +168,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 				.toList()) {
 			AlumnoPrediccionesDetalleDTO alumnoPrediccionDetalleDTO = this.alumnoMapper.puntajeDetalleViewToDetalleDTO(view);
 			alumnoPrediccionDetalleDTO.setPuntajeObtenido(getPuntajeFromPredicciones(view.getPrediccionEquipo1(),
-					view.getPrediccionEquipo2(),
 					view.getGolesEquipo1(),
+					view.getPrediccionEquipo2(),
 					view.getGolesEquipo2()));
 			usuarioDetalleDTO.getPredicciones().add(alumnoPrediccionDetalleDTO);
 		}
@@ -186,7 +186,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 		int puntaje = 0;
 		if (prediccionEquipo1.equals(golesEquipo1) && prediccionEquipo2.equals(golesEquipo2)) {
 			puntaje = 4;
-		} else if ((prediccionEquipo1 > prediccionEquipo2) == (golesEquipo1 > golesEquipo2)) {
+		} else if ((prediccionEquipo1 > prediccionEquipo2 && golesEquipo1 > golesEquipo2)
+				|| (prediccionEquipo1 < prediccionEquipo2 && golesEquipo1 < golesEquipo2)
+				|| (prediccionEquipo1.equals(prediccionEquipo2) && golesEquipo1.equals(golesEquipo2))) {
 			puntaje = 2;
 		}
 		return puntaje;
