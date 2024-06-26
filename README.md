@@ -29,7 +29,7 @@ Backend:
 Frontend:
  - **Lenguaje de programación:** TypeScript
  - **Framework de desarrollo:** Angular 17.3.7
- - **Entorno de ejecución:** Node 10.13.1
+ - **Entorno de ejecución:** Node 20.13.1
  - **Gestor de dependencias:** npm 10.8.0
 
 Contenedorización con **Docker**.
