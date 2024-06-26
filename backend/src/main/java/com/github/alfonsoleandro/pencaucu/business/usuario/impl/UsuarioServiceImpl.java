@@ -162,11 +162,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 			}
 		}
 
-		for (AlumnoPuntajeDetalleView view : alumnoPuntajeViewByIdUsuario
-				.values()
+		for (AlumnoPuntajeDetalleView view : alumnosPuntajes
 				.stream()
 				.filter(alumnoPuntajeView -> alumnoPuntajeView.getIdUsuario().equals(id) && alumnoPuntajeView.getIdPartido() != null)
-				.collect(Collectors.toSet())) {
+				.toList()) {
 			AlumnoPrediccionesDetalleDTO alumnoPrediccionDetalleDTO = this.alumnoMapper.puntajeDetalleViewToDetalleDTO(view);
 			alumnoPrediccionDetalleDTO.setPuntajeObtenido(getPuntajeFromPredicciones(view.getPrediccionEquipo1(),
 					view.getPrediccionEquipo2(),
