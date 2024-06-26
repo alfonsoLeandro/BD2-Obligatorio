@@ -12,7 +12,10 @@ Proyecto obligatorio para Bases de Datos II UCU 2024
 Este proyecto es un trabajo obligatorio para el primer semestre de 2024,
 desarrollado como proyecto final para la materia Bases de Datos II.
 
-[//]: # ( - TODO descripcion general)
+El proyecto consiste en una aplicación web que permite a los alumnos de la Universidad Católica del Uruguay
+registrarse para competir en una penca que se realiza a nivel de toda la universidad. La penca consiste en
+predecir los resultados de los partidos de fútbol de la Copa América 2024.
+
 Ver también:
  - [Diagramas (MER, tablas, diagrama de deploy)](https://drive.google.com/file/d/1WjgIBcqFxLbPESPz67LNtpOGHJfB475C/view?usp=sharing)
  - [Bitácora de asunciones](bitacora%20de%20asunciones.md)
@@ -29,7 +32,7 @@ Backend:
 Frontend:
  - **Lenguaje de programación:** TypeScript
  - **Framework de desarrollo:** Angular 17.3.7
- - **Entorno de ejecución:** Node 20.13.1
+ - **Entorno de ejecución:** Node 20.15.0
  - **Gestor de dependencias:** npm 10.8.0
 
 Contenedorización con **Docker**.
@@ -58,8 +61,17 @@ rol más orientado al desarrollo de código.
 
 ### Pasos:
  - Clonar el repositorio.
+ - Abrir una terminal en la raíz del repositorio.
+ - Ejecutar el comando `docker-compose up`.
+ - Esperar a que se descarguen las imágenes y se levanten los contenedores.
+ - Acceder a la aplicación web en `http://localhost`.
 
-[//]: # ( - TODO pasos para instalación y ejecución)
+### Uso
+Para utilizar la aplicación es necesario registrarse llenando el formulario de registro. Una vez registrado, se puede
+iniciar sesión con el usuario y contraseña elegidos. Al iniciar sesión, se accede a la pantalla principal de la penca,
+donde se listan todos los partidos de la Copa América 2024 y se puede ingresar el resultado de cada partido 
+(siempre que el partido tenga fecha de inicio mayor a una hora a partir de la fecha actual).
+
 
 ## Integrantes:
  - [Leandro Alfonso](https://github.com/alfonsoLeandro)
