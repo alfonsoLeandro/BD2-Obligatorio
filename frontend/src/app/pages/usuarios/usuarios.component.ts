@@ -107,4 +107,8 @@ export class UsuariosComponent implements OnDestroy {
         this.router.navigate(['/usuario', id]);
     }
 
+    navigateToCurrentUsuario() {
+        this.router.navigate(['/usuario', localStorage.getItem('id')]);
+    }
+
 }

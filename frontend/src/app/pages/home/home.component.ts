@@ -112,6 +112,10 @@ export class HomeComponent implements OnDestroy {
         });
     }
 
+    navigateToCurrentUsuario() {
+        this.router.navigate(['/usuario', localStorage.getItem('id')]);
+    }
+
     navigateToPartido(id: number) {
         this.router.navigate(['/partido', id]);
     }
