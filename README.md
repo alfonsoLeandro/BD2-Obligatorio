@@ -61,6 +61,8 @@ rol más orientado al desarrollo de código.
 
 ### Pasos:
  - Clonar el repositorio.
+ - Generar un archivo "jwt-secret", que debe contener un secreto HS256, necesario para que funcione el backend, espeíficamente la autenticación usando JWT.
+ - Generar un arcihov "email-pwd", que debe contener la contraseña para la dirección de correo de outlook especificada en el docker-compose, dentro de las variables de entorno del servicio "backend" como "EMAIL". 
  - Abrir una terminal en la raíz del repositorio.
  - Ejecutar el comando `docker-compose up`.
  - Esperar a que se descarguen las imágenes y se levanten los contenedores.
