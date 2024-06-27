@@ -26,8 +26,6 @@ services:
       - DB_PASSWORD=db_pwd_1223334444
       - DB_USER_NAME=obligatorio_usr
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/obligatorio_db
-      - EMAIL=obligatorio17@outlook.com
-      - EMAIL_PASSWORD=obligatorio_17
       - JWT_SECRET_PATH=/run/secrets/jwt-secret
       - EMAIL=correoAutomaticoLA@outlook.com
       - EMAIL_PASSWORD_PATH=/run/secrets/email-pwd
