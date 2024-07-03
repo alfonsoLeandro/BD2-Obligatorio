@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface EtapaRepository extends JpaRepository<Eleccion, Integer> {
 
 	@Query(value = """
-		SELECT e.anunciada
+		SELECT e.anunciado
 		FROM etapas e
 		         JOIN partidos p ON e.id = p.id_etapa
 		WHERE p.id = :idPartido
@@ -24,7 +24,7 @@ public interface EtapaRepository extends JpaRepository<Eleccion, Integer> {
 	@Modifying
 	@Query(value = """
 		UPDATE etapas
-		SET anunciada = true
+		SET anunciado = true
 		WHERE id = (SELECT id_etapa FROM partidos WHERE id = :idPartido)
 		""", nativeQuery = true)
 	void setAnunciadaByPartidoId(int idPartido);

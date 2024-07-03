@@ -20,4 +20,8 @@ public class Etapa {
     @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
 
+    @NotNull
+    @Column(name = "anunciado")
+    private Boolean anunciado;
+
 }
